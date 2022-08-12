@@ -154,7 +154,7 @@
 <!-- Preloader -->
 
 <body style="background-color:#FFFFFF;">
-    <div class="pre-loader" style="width:641px;height:528px;background-color: #DDE3EF;">
+    <div class="pre-loader" style="height:504px;width: 140px;">
         <div class="pre-loader-box" style="margin-top: -50px;">
             <div class="loader-logo"><img src="img/weather/icon.png" alt=""></div>
             <div class='loader-progress' id="progress_div" style="margin-top: -20px;">
@@ -167,32 +167,8 @@
         </div>
     </div>
     <div class="object-wrapper">
-<div style="width:641px;height:528px; background-color: #DDE3EF;" align="center">
-<p style="margin: 20px; font-size: 40px;">สภาพอากาศ กรุงเทพมหานคร </p>
-<div style="width:590px;height:200px;background-color:#5C7AEE; margin-left: 7px; margin-right:7px;margin-top:20px;border-radius: 20px;box-shadow:1px 6px 14px #959595;">
-<table width="100%" border="1">
-    <tr>
-        <td width="33%">
-          <img src="./img/cloud.svg">
-        </td>
-        <td width="34%">
-        <div align="center" style="font-size: 30px; margin-left:-60px;margin-top:-24px;" id="temC">
-                        </div>
-        </td>
-        <td width="33%">
-            1
-        </td>
-    </tr>
-</table>
-</div>
-<div style="width:590px;height:200px;background-color:#5C7AEE; margin-left: 7px; margin-right:7px;margin-top:15px;border-radius: 20px;box-shadow:1px 6px 14px #959595;" align="right">
-<div style="width:490px;height:200px;background-color:#FFFFFF;margin-top:15px;border-radius: 20px;">
 
-</div>
-</div>
-</div>    
-
-        <!-- <div style="width: 140px; height:502px;background-color: #000000; color:#FFFFFF;">
+        <div style="width: 140px; height:502px;background-color: #000000; color:#FFFFFF;">
             <table width="100%" style="color: #FFFFFF; width: 100%;
   border: 1px solid #FFFFFF; ">
                 <tr style="height: 120px;">
@@ -255,7 +231,7 @@
                 </tr>
             </table>
 
-        </div> -->
+        </div>
     </div>
     <!-- js -->
     <script src="vendors/scripts/core.js"></script>
