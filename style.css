@@ -15,16 +15,19 @@
 @import url(css/animate.css);
 @import url(css/owl.carousel.css);
 @import url(css/font-awesome.min.css);
-@font-face {
-  font-family: 'futuracondensed_extrabold';
+/* @font-face {
+  font-family: 'sukhumvit_setlight';
   src: url("fonts/ufonts.com_futura-condensed-extrabold-webfont.woff2") format("woff2"), url("fonts/ufonts.com_futura-condensed-extrabold-webfont.woff") format("woff");
   font-weight: normal;
-  font-style: normal; }
-@font-face {
-  font-family: 'futuracondensed_extrabold';
-  src: url("fonts/ufonts.com_futura-condensed-extrabold-webfont.woff2") format("woff2"), url("fonts/ufonts.com_futura-condensed-extrabold-webfont.woff") format("woff");
-  font-weight: normal;
-  font-style: normal; }
+  font-style: normal; } */
+  @font-face {
+    font-family: 'sukhumvit_setlight';
+    src: url('/fonts/sukhumvitset-light-webfont.woff2') format('woff2'),
+         url('/fonts/sukhumvitset-light-webfont.woff') format('woff');
+    font-weight: normal;
+    font-style: normal;
+
+}
 /* :: Import All CSS */
 /* :: Base CSS */
 * {
@@ -32,7 +35,7 @@
   padding: 0; }
 
 body {
-  font-family: "futuracondensed_extrabold";
+  font-family: "sukhumvit_setlight";
   background-color: #ffffff; }
 
 h1,
@@ -44,13 +47,13 @@ h6 {
   color: #000000;
   font-weight: 500;
   line-height: 1.3;
-  font-family: "futuracondensed_extrabold"; }
+  font-family: "sukhumvit_setlight"; }
 
 p {
   color: #878787;
   font-size: 14px;
   line-height: 1.4;
-  font-family: "futuracondensed_extrabold"; }
+  font-family: "sukhumvit_setlight"; }
 
 a {
   -webkit-transition-duration: 500ms;
@@ -58,10 +61,10 @@ a {
   text-decoration: none;
   outline: none;
   font-size: 14px;
-  font-family: "futuracondensed_extrabold";
+  font-family: "sukhumvit_setlight";
   color: #4f4d4d; }
   a:hover, a:focus {
-    font-family: "futuracondensed_extrabold";
+    font-family: "sukhumvit_setlight";
     -webkit-transition-duration: 500ms;
     transition-duration: 500ms;
     text-decoration: none;
@@ -561,7 +564,7 @@ img {
         text-transform: uppercase;
         color: #000000;
         line-height: 1;
-        font-family: "futuracondensed_extrabold"; }
+        font-family: "sukhumvit_setlight"; }
         .single-blog-area .single-blog-thumbnail .post-date a span {
           display: block;
           font-family: "Open Sans", sans-serif;

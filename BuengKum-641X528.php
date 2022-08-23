@@ -36,27 +36,39 @@
         m_str = tmp_min.toString();
         var frst_m = m_str.substring(0, 1);
         var scnd_m = m_str.substring(1);
-
-        document.getElementById('hours').innerText = frst_h;
+        var frst_hr ="";
+if(frst_h.toString().length+scnd_h.toString().length >=2){
+    frst_hr  = frst_h;
+}else{
+    frst_hr = pad2(frst_h);
+}
+        document.getElementById('hours').innerText =frst_hr;
         document.getElementById('hours2').innerText = scnd_h;
         document.getElementById('colon').innerText = ":";
         document.getElementById('minutes').innerText = frst_m;
         document.getElementById('minutes2').innerText = scnd_m;
 
-        var days = ["Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"];
-        var months = ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October",
-            "November", "December"
-        ];
+        var days = ["อาทิตย์", "จันทร์", "อังคาร", "พุธ", "พฤหัสบดี", "ศุกร์", "เสาร์"];
+        // var months = ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October",
+        //     "November", "December"
+        // ];
 
         $('#dayNames').html(days[date.getDay()]);
         $('#dayNum').html(date.getDate());
-        $('#monthName').html(months[date.getMonth()]);
+        // $('#monthName').html(months[date.getMonth()]);
         $('#yearNum').html(date.getFullYear());
 
     }
 
     var interval = setInterval(run_the_clock, 1000);
 </script>
+<script>
+    function pad2(number) {
+   
+   return (number < 10 ? '0' : '') + number
+ 
+}
+    </script>
 <script>
     document.addEventListener('contextmenu', event => event.preventDefault());
 
@@ -70,6 +82,10 @@
                 var codes = obj.list[0].weather[0].id;
                 var temK = obj.list[0].main.temp;
                 var temCs = temK - 273.15;
+                var temKMax = obj.list[0].main.temp_max;
+                var temCMax = temKMax - 273.15;
+                var temKMin = obj.list[0].main.temp_min;
+                var temCMin = temKMin - 273.15;
                 if (codes == 800) {
                     $('#logo').html(
                         '<img src="img/weather/1.svg" width="70" style="margin-top:-30px; margin-left:50px; margin-bottom:20px;">'
@@ -133,6 +149,13 @@
 
                 const tc = temCs.toString().split('.');
                 $('#temC').html(tc[0]);
+                const tm = temCMax.toString().split('.');
+                $('#temMax').html(tm[0]);
+                const tn = temCMin.toString().split('.');
+                $('#temMin').html(tn[0]);
+                var txtWeather = "แจ่มใส";
+                $('#textWether').html(txtWeather);
+                
             }
         })
     }
@@ -170,17 +193,71 @@
 <div style="width:641px;height:528px; background-color: #DDE3EF;" align="center">
 <p style="margin: 20px; font-size: 40px;">สภาพอากาศ กรุงเทพมหานคร </p>
 <div style="width:590px;height:200px;background-color:#5C7AEE; margin-left: 7px; margin-right:7px;margin-top:20px;border-radius: 20px;box-shadow:1px 6px 14px #959595;">
-<table width="100%" border="1">
-    <tr>
+<table width="100%" border="1" style="color:#FFFFFF; height:100%;" >
+    <tr hiight="50%">
         <td width="33%">
-          <img src="./img/cloud.svg">
+          <img src="./img/cloud.svg" width="130" style="position: absolute;margin-left:30px;margin-top:-35px;">
         </td>
-        <td width="34%">
-        <div align="center" style="font-size: 30px; margin-left:-60px;margin-top:-24px;" id="temC">
+        <td width="34%" align="center">
+        <img src="./img/cycle.svg" width="20"  style="position: absolute; ">
+        <div align="center" style="font-size: 65px;" id="temC">
                         </div>
         </td>
         <td width="33%">
-            1
+        <div align="center" style="font-size: 30px; margin-bottom:-5px;margin-top:-5px;" id="dayNames">
+                        </div>
+       
+        </td>
+    </tr>
+    <tr hiight="50%">
+        <td width="33%" align="center">
+        <div align="center" style="font-size: 35px; margin-bottom:-5px;margin-top:-5px;" id="textWether">
+                        </div>
+       
+        </td>
+        <td width="34%">
+<table width="100%">
+    <tr>
+        <td align="center" width="50%">
+        <img src="./img/cycle.svg" width="13"  style="position: absolute; ">
+        <div align="center" style="font-size: 40px;" id="temMax" >
+      
+                        </div>  
+                       
+        </td>
+        <td align="center" width="50%">
+        <img src="./img/cycle.svg" width="13"  style="position: absolute; ">
+        <div align="center" style="font-size: 40px;" id="temMin">
+                        </div>
+        </td>
+    </tr>
+</table>
+        </td>
+        <td width="33%" align="center">
+        <table style="font-size: 50px;margin-top: -25px;">
+        <tr>
+            <td>
+        
+            </td>
+        </tr>
+                            <tr>
+                                <td>
+                                    <div id="hours"></div>
+                                </td>
+                                <td>
+                                    <div id="hours2"></div>
+                                </td>
+                                <td>
+                                    <div id="colon"></div>
+                                </td>
+                                <td>
+                                    <div id="minutes"></div>
+                                </td>
+                                <td>
+                                    <div id="minutes2"></div>
+                                </td>
+                            </tr>
+                        </table>
         </td>
     </tr>
 </table>
@@ -236,8 +313,7 @@
                 </tr>
                 <tr style=" color:#FFFFFF;">
                     <td align="center">
-                        <div align="center" style="font-size: 26px; margin-bottom:-5px;margin-top:-5px;" id="dayNames">
-                        </div>
+                        
                         <div align="center" style="font-size: 40px; margin-bottom:-5px;margin-top:-5px;" id="dayNum">
                         </div>
                         <div align="center" style="font-size: 26px; margin-bottom:-5px;margin-top:-5px;" id="monthName">
