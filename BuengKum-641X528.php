@@ -36,13 +36,13 @@
         m_str = tmp_min.toString();
         var frst_m = m_str.substring(0, 1);
         var scnd_m = m_str.substring(1);
-        var frst_hr ="";
-if(frst_h.toString().length+scnd_h.toString().length >=2){
-    frst_hr  = frst_h;
-}else{
-    frst_hr = pad2(frst_h);
-}
-        document.getElementById('hours').innerText =frst_hr;
+        var frst_hr = "";
+        if (frst_h.toString().length + scnd_h.toString().length >= 2) {
+            frst_hr = frst_h;
+        } else {
+            frst_hr = pad2(frst_h);
+        }
+        document.getElementById('hours').innerText = frst_hr;
         document.getElementById('hours2').innerText = scnd_h;
         document.getElementById('colon').innerText = ":";
         document.getElementById('minutes').innerText = frst_m;
@@ -64,20 +64,28 @@ if(frst_h.toString().length+scnd_h.toString().length >=2){
 </script>
 <script>
     function pad2(number) {
-   
-   return (number < 10 ? '0' : '') + number
- 
-}
-    </script>
+
+        return (number < 10 ? '0' : '') + number
+
+    }
+</script>
 <script>
     document.addEventListener('contextmenu', event => event.preventDefault());
+    // alert(location.pathname+location.search);
+    let params = new URLSearchParams(location.search);
+    var apiLine1 = params.get('api-line1');
+    var apiLine2 = params.get('api-line2');
+    var lat = params.get('lat');
+    var lon = params.get('lon');
+    var appKey = params.get('app-key');
 
     function FETCH_DATA() {
+//api line 1
         $.ajax({
-            url: "https://api.openweathermap.org/data/2.5/find?lat=13.815769&lon=100.561135&cnt=1&appid=6ae62b536713a717371ecb69c08d7f65",
+            url: apiLine1 + "lat=" + lat + "&lon=" + lon + "&cnt=1&appid=" + appKey,
             method: 'GET',
             dataType: 'json',
-            success: function (data) {
+            success: function(data) {
                 var obj = JSON.parse(JSON.stringify(data));
                 var codes = obj.list[0].weather[0].id;
                 var temK = obj.list[0].main.temp;
@@ -86,66 +94,79 @@ if(frst_h.toString().length+scnd_h.toString().length >=2){
                 var temCMax = temKMax - 273.15;
                 var temKMin = obj.list[0].main.temp_min;
                 var temCMin = temKMin - 273.15;
+                // 800 , 801, 803 , 300, 200, 000
+                // codes = "200";
                 if (codes == 800) {
-                    $('#logo').html(
-                        '<img src="img/weather/1.svg" width="70" style="margin-top:-30px; margin-left:50px; margin-bottom:20px;">'
-                    );
-                } else if (codes == 801) {
-                    $('#logo').html(
-                        '<img src="img/weather/2.svg" style="margin-top:-40px; margin-left:28px;">');
-                } else if (codes == 802 || codes == 803) {
-                    $('#logo').html(
-                        '<img src="img/weather/3.svg" style="margin-top:-40px; margin-left:28px;">');
-                } else if (codes == 804) {
-                    $('#logo').html(
-                        '<img src="img/weather/4.svg" style="margin-top:-36px; margin-left:50px;margin-bottom:21px;" width="75" >'
-                    );
-                } else if (codes == 520 || codes == 521 || codes == 531) {
-                    $('#logo').html(
-                        '<img src="img/weather/5.svg" style="margin-top:-23px; margin-left:33px;"  width="83">'
-                        );
-                } else if (codes == 501) {
-                    $('#logo').html(
-                        '<img src="img/weather/6.svg" style="margin-top:-30px; margin-left:33px;margin-bottom:-10px;">'
-                        );
-                } else if (codes == 300 || codes == 310 || codes == 500) {
-                    $('#logo').html(
-                        '<img src="img/weather/7.svg" style="margin-top:-40px; margin-left:33px;">');
-                } else if (codes == 302 || codes == 312 || codes == 502 || codes == 503 || codes == 504 ||
-                    codes == 511 || codes == 522) {
-                    $('#logo').html(
-                        '<img src="img/weather/8.svg" style="margin-top:-25px; margin-left:45px;margin-bottom:12px;" width="73">'
-                        );
-                } else if (codes == 210) {
-                    $('#logo').html(
-                        '<img src="img/weather/9.svg" style="margin-top:-30px; margin-left:38px;margin-bottom:5px;" width="85">'
-                        );
-                } else if (codes == 221 || codes == 211 || codes == 201 || codes == 200 || codes == 230 ||
-                    codes == 231 || codes == 232) {
-                    $('#logo').html(
-                        '<img src="img/weather/10.svg" style="margin-top:-30px; margin-left:40px;margin-bottom:12px;" width="78">'
-                        );
-                } else if (codes == 202 || codes == 212) {
-                    $('#logo').html(
-                        '<img src="img/weather/11.svg" style="margin-top:-30px; margin-left:50px;margin-bottom:12px;" width="78">'
-                        );
-                } else if (codes == 313 || codes == 321) {
-                    $('#logo').html(
-                        '<img src="img/weather/12.svg" style="margin-top:-30px; margin-left:50px;margin-bottom:12px;" width="78">'
-                        );
-                } else if (codes == 301 || codes == 311) {
-                    $('#logo').html(
-                        '<img src="img/weather/13.svg" style="margin-top:-30px; margin-left:50px;margin-bottom:12px;" width="78">'
-                        );
-                } else if (codes == 314) {
-                    $('#logo').html(
-                        '<img src="img/weather/14.svg" style="margin-top:-30px; margin-left:50px;margin-bottom:12px;" width="78">'
-                        );
+                    $('#imageMain').html('<img class="ICON-IMG-MAIN1" src="./img/sun.svg" >');
+                    document.getElementById('backgroundHeader').className = 'bg-1';
+                    document.getElementById('backgroundFooter').className = 'bg-1';
+                    $('#textWether').html("แจ่มใส");
+
+                } else if (codes == 801 || codes == 802) {
+                    $('#imageMain').html('<img class="ICON-IMG-MAIN2" src="./img/sun-cloud.svg" >');
+                    document.getElementById('backgroundHeader').className = 'bg-2';
+                    document.getElementById('backgroundFooter').className = 'bg-2';
+                    $('#textWether').html("เมฆบางส่วน");
+
+                } else if (codes == 803 || codes == 804) {
+                    $('#imageMain').html('<img class="ICON-IMG-MAIN3" src="./img/cloud.svg" >');
+                    document.getElementById('backgroundHeader').className = 'bg-3';
+                    document.getElementById('backgroundFooter').className = 'bg-3';
+                    $('#textWether').html("เมฆมาก");
+
+                } else if (
+                    codes == 300 ||
+                    codes == 301 ||
+                    codes == 302 ||
+                    codes == 310 ||
+                    codes == 311 ||
+                    codes == 312 ||
+                    codes == 313 ||
+                    codes == 314 ||
+                    codes == 321 ||
+                    codes == 500 ||
+                    codes == 501 ||
+                    codes == 502 ||
+                    codes == 503 ||
+                    codes == 504 ||
+                    codes == 511 ||
+                    codes == 520 ||
+                    codes == 521 ||
+                    codes == 522 ||
+                    codes == 531) {
+                    $('#imageMain').html('<img class="ICON-IMG-MAIN4" src="./img/rain-cloud.svg" >');
+                    document.getElementById('backgroundHeader').className = 'bg-4';
+                    document.getElementById('backgroundFooter').className = 'bg-4';
+                    $('#textWether').html("ฝนตก");
+
+                } else if (
+                    codes == 200 ||
+                    codes == 201 ||
+                    codes == 202 ||
+                    codes == 210 ||
+                    codes == 211 ||
+                    codes == 212 ||
+                    codes == 221 ||
+                    codes == 230 ||
+                    codes == 231 ||
+                    codes == 232) {
+                    $('#imageMain').html('<img class="ICON-IMG-MAIN5" src="./img/rain-cloud-light.svg" >');
+                    document.getElementById('backgroundHeader').className = 'bg-5';
+                    document.getElementById('backgroundFooter').className = 'bg-5';
+                    $('#textWether').html("ฝนฟ้าคะนอง");
+
                 } else {
-                    $('#logo').html(
-                        '<img src="img/weather/4.svg" style="margin-top:-36px; margin-left:50px;margin-bottom:21px;" width="75" >'
-                    );
+                    $('#imageMain').html('<img class="ICON-IMG-MAIN5" src="./img/rain-cloud-light.svg" >');
+                    document.getElementById('backgroundHeader').className = 'bg-5';
+                    document.getElementById('backgroundFooter').className = 'bg-5';
+                    $('#textWether').html("ฝนฟ้าคะนอง");
                 }
+
+                document.getElementById("imageDay1").src = "./img/cloud.svg";
+                document.getElementById("imageDay2").src = "./img/cloud.svg";
+                document.getElementById("imageDay3").src = "./img/cloud.svg";
+                document.getElementById("imageDay4").src = "./img/cloud.svg";
+                document.getElementById("imageDay5").src = "./img/cloud.svg";
 
                 const tc = temCs.toString().split('.');
                 $('#temC').html(tc[0]);
@@ -153,30 +174,41 @@ if(frst_h.toString().length+scnd_h.toString().length >=2){
                 $('#temMax').html(tm[0]);
                 const tn = temCMin.toString().split('.');
                 $('#temMin').html(tn[0]);
-                var txtWeather = "แจ่มใส";
-                $('#textWether').html(txtWeather);
-                
+
+
+                $('#dayName-TH1').html("จ");
+                $('#dayName-TH2').html("อ");
+                $('#dayName-TH3').html("พ");
+                $('#dayName-TH4').html("พฤ");
+                $('#dayName-TH5').html("อ");
+                $('#rainValue-TH1').html("");
+                $('#rainValue-TH2').html("");
+                $('#rainValue-TH3').html("");
+                $('#rainValue-TH4').html("25%");
+                $('#rainValue-TH5').html("50%");
+
             }
-        })
+        });
+        //api line 2
+        $.ajax({
+            url: apiLine2 + "lat=" + lat + "&lon=" + lon + "&cnt=1&appid=" + appKey,
+            method: 'GET',
+            dataType: 'json',
+            success: function(data) {
+                var obj = JSON.parse(JSON.stringify(data));
+                var codes = obj.list[0].weather[0].id;
+              
+
+            }
+        });
     }
     setInterval(FETCH_DATA, 1000);
 </script>
-<style>
-    body {
-        font-family: 'futuracondensed_extrabold';
-    }
-
-    .object-wrapper {
-        display: flex;
-        justify-content: left;
-        align-items: left;
-        min-height: 95vh;
-    }
-</style>
-
+<?php include('style-font_641X528.php'); ?>
+<?php include('style-background.php'); ?>
 <!-- Preloader -->
 
-<body style="background-color:#FFFFFF;">
+<body style="background-color:#FFFFFF; ">
     <div class="pre-loader" style="width:641px;height:528px;background-color: #DDE3EF;">
         <div class="pre-loader-box" style="margin-top: -50px;">
             <div class="loader-logo"><img src="img/weather/icon.png" alt=""></div>
@@ -190,148 +222,145 @@ if(frst_h.toString().length+scnd_h.toString().length >=2){
         </div>
     </div>
     <div class="object-wrapper">
-<div style="width:641px;height:528px; background-color: #DDE3EF;" align="center">
-<p style="margin: 20px; font-size: 40px;">สภาพอากาศ กรุงเทพมหานคร </p>
-<div style="width:590px;height:200px;background-color:#5C7AEE; margin-left: 7px; margin-right:7px;margin-top:20px;border-radius: 20px;box-shadow:1px 6px 14px #959595;">
-<table width="100%" border="1" style="color:#FFFFFF; height:100%;" >
-    <tr hiight="50%">
-        <td width="33%">
-          <img src="./img/cloud.svg" width="130" style="position: absolute;margin-left:30px;margin-top:-35px;">
-        </td>
-        <td width="34%" align="center">
-        <img src="./img/cycle.svg" width="20"  style="position: absolute; ">
-        <div align="center" style="font-size: 65px;" id="temC">
-                        </div>
-        </td>
-        <td width="33%">
-        <div align="center" style="font-size: 30px; margin-bottom:-5px;margin-top:-5px;" id="dayNames">
-                        </div>
-       
-        </td>
-    </tr>
-    <tr hiight="50%">
-        <td width="33%" align="center">
-        <div align="center" style="font-size: 35px; margin-bottom:-5px;margin-top:-5px;" id="textWether">
-                        </div>
-       
-        </td>
-        <td width="34%">
-<table width="100%">
-    <tr>
-        <td align="center" width="50%">
-        <img src="./img/cycle.svg" width="13"  style="position: absolute; ">
-        <div align="center" style="font-size: 40px;" id="temMax" >
-      
-                        </div>  
-                       
-        </td>
-        <td align="center" width="50%">
-        <img src="./img/cycle.svg" width="13"  style="position: absolute; ">
-        <div align="center" style="font-size: 40px;" id="temMin">
-                        </div>
-        </td>
-    </tr>
-</table>
-        </td>
-        <td width="33%" align="center">
-        <table style="font-size: 50px;margin-top: -25px;">
-        <tr>
-            <td>
-        
-            </td>
-        </tr>
-                            <tr>
-                                <td>
-                                    <div id="hours"></div>
-                                </td>
-                                <td>
-                                    <div id="hours2"></div>
-                                </td>
-                                <td>
-                                    <div id="colon"></div>
-                                </td>
-                                <td>
-                                    <div id="minutes"></div>
-                                </td>
-                                <td>
-                                    <div id="minutes2"></div>
-                                </td>
-                            </tr>
-                        </table>
-        </td>
-    </tr>
-</table>
-</div>
-<div style="width:590px;height:200px;background-color:#5C7AEE; margin-left: 7px; margin-right:7px;margin-top:15px;border-radius: 20px;box-shadow:1px 6px 14px #959595;" align="right">
-<div style="width:490px;height:200px;background-color:#FFFFFF;margin-top:15px;border-radius: 20px;">
+        <div style="width:641px;height:528px; background-color: #DDE3EF;" align="center">
+            <?php include('txt-header.php'); ?>
+            <div id="backgroundHeader" style="width:590px;height:200px; margin-left: 7px; margin-right:7px;margin-top:20px;border-radius: 20px;box-shadow:1px 6px 14px #959595;">
+                <table width="100%" border="0" style="color:#FFFFFF; height:100%;">
+                    <tr height="65%">
+                        <td width="33%">
+                            <!-- <img src="" id="imageMain"  class="ICON-IMG-MAIN" style="position: absolute;"> -->
+                            <div align="center" id="imageMain"></div>
+                        </td>
+                        <td width="34%" align="center">
+                            <img src="./img/cycle.svg" class="cycles-main" style="position: absolute; ">
+                            <div align="center" class="TEMP-MAIN" id="temC">
+                            </div>
+                        </td>
+                        <td width="33%">
+                            <div align="center" class="TXT_F1" id="dayNames">
+                            </div>
 
-</div>
-</div>
-</div>    
+                        </td>
+                    </tr>
+                    <tr height="35%">
+                        <td width="33%" align="center">
+                            <div align="center" class="TXT_F2" style="margin-bottom:-5px;margin-top:-5px;" id="textWether">
+                            </div>
 
-        <!-- <div style="width: 140px; height:502px;background-color: #000000; color:#FFFFFF;">
-            <table width="100%" style="color: #FFFFFF; width: 100%;
-  border: 1px solid #FFFFFF; ">
-                <tr style="height: 120px;">
-                    <td style="padding-right:10px;" align="right">
-                        <img src="img/weather/temp_c.svg" style="margin-top:25px; margin-right:51px;">
-                        <div align="center" style="font-size: 30px; margin-left:-60px;margin-top:-24px;" id="temC">
-                        </div>
-                        <div align="center" id="logo"></div>
-                    </td>
-                </tr>
-                <tr style="height: 100px;" align="center">
-                    <td width="100%">
-                        <div><img src="img/weather/ln2.svg" width="120" style="margin-top: -25px;"></div>
-                        <table style="font-size: 40px;margin-top: -25px;">
-                            <tr>
-                                <td>
-                                    <div id="hours"></div>
-                                </td>
-                                <td>
-                                    <div id="hours2"></div>
-                                </td>
-                                <td>
-                                    <div id="colon"></div>
-                                </td>
-                                <td>
-                                    <div id="minutes"></div>
-                                </td>
-                                <td>
-                                    <div id="minutes2"></div>
-                                </td>
-                            </tr>
-                        </table>
+                        </td>
+                        <td width="34%">
+                            <table width="100%">
+                                <tr>
+                                    <td align="center" width="50%">
+                                        <img src="./img/cycle.svg" class="cycles" style="position: absolute; ">
+                                        <div align="center" class="TXT_F3MAX" id="temMax">
 
-                        <div style="font-size: 18px; margin-top:-15px; margin-left:70px; position: absolute;">
-                            o'clock<br>
-                        </div>
-                        <div>
-                            <img src="img/weather/ln1.svg" width="120">
-                        </div>
-                    </td>
-                </tr>
-                <tr style=" color:#FFFFFF;">
-                    <td align="center">
-                        
-                        <div align="center" style="font-size: 40px; margin-bottom:-5px;margin-top:-5px;" id="dayNum">
-                        </div>
-                        <div align="center" style="font-size: 26px; margin-bottom:-5px;margin-top:-5px;" id="monthName">
-                        </div>
-                        <div align="center"
-                            style="font-size: 40px; margin-bottom:-5px;margin-top:-5px; margin-bottom:2px;"
-                            id="yearNum"></div>
-                        <div style="border: 1px solid #FFFFFF;"></div>
-                    </td>
-                </tr>
-                <tr>
-                    <td>
-                        <img src="img/weather/logo.svg">
-                    </td>
-                </tr>
-            </table>
+                                        </div>
 
-        </div> -->
+                                    </td>
+                                    <td align="center" width="50%">
+                                        <img src="./img/cycle.svg" class="cycles" style="position: absolute; ">
+                                        <div align="center" class="TXT_F3MIN" id="temMin">
+                                        </div>
+                                    </td>
+                                </tr>
+                            </table>
+                        </td>
+                        <td width="33%" align="center">
+                            <table class="TXT_F4">
+                                <tr>
+                                    <td>
+
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>
+                                        <div id="hours"></div>
+                                    </td>
+                                    <td>
+                                        <div id="hours2"></div>
+                                    </td>
+                                    <td>
+                                        <div id="colon"></div>
+                                    </td>
+                                    <td>
+                                        <div id="minutes"></div>
+                                    </td>
+                                    <td>
+                                        <div id="minutes2"></div>
+                                    </td>
+                                </tr>
+                            </table>
+                        </td>
+                    </tr>
+                </table>
+            </div>
+            <div id="backgroundFooter" style="width:590px;height:200px; margin-left: 7px; margin-right:7px;margin-top:15px;border-radius: 20px;box-shadow:1px 6px 14px #959595;" align="right">
+                <table style="position: absolute;" width="590" border="0">
+                    <tr>
+                        <td width="20%">
+                            <div align="center" class="TXT_DAYS-FIRST" id="dayName-TH1">
+                            </div>
+                        </td>
+                        <td width="20%">
+                            <div align="center" class="TXT_DAYS" id="dayName-TH2">
+                            </div>
+                        </td>
+                        <td width="20%">
+                            <div align="center" class="TXT_DAYS" id="dayName-TH3">
+                            </div>
+                        </td>
+                        <td width="20%">
+                            <div align="center" class="TXT_DAYS" id="dayName-TH4">
+                            </div>
+                        </td>
+                        <td width="20%">
+                            <div align="center" class="TXT_DAYS" id="dayName-TH5">
+                            </div>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td align="center">
+                            <img src="" id="imageDay1" class="IMG-DAY-ICON">
+                        </td>
+                        <td align="center">
+                            <img src="" id="imageDay2" class="IMG-DAY-ICON">
+                        </td>
+                        <td align="center">
+                            <img src="" id="imageDay3" class="IMG-DAY-ICON">
+                        </td>
+                        <td align="center">
+                            <img src="" id="imageDay4" class="IMG-DAY-ICON">
+                        </td>
+                        <td align="center">
+                            <img src="" id="imageDay5" class="IMG-DAY-ICON">
+                        </td>
+                    </tr>
+                    <tr>
+                        <td align="center">
+
+                            <div align="center" class="TXT_RAIN_VALUE_FIRST" id="rainValue-TH1"></div>
+                        </td>
+                        <td align="center">
+                            <div align="center" class="TXT_RAIN_VALUE" id="rainValue-TH2"></div>
+                        </td>
+                        <td align="center">
+                            <div align="center" class="TXT_RAIN_VALUE" id="rainValue-TH3"></div>
+                        </td>
+                        <td align="center">
+                            <div align="center" class="TXT_RAIN_VALUE" id="rainValue-TH4"></div>
+                        </td>
+                        <td align="center">
+                            <div align="center" class="TXT_RAIN_VALUE" id="rainValue-TH5"></div>
+                        </td>
+                    </tr>
+                </table>
+                <div style="width:477px;height:200px;background-color:#FFFFFF;margin-top:15px;border-radius: 20px;">
+
+                </div>
+            </div>
+        </div>
+
     </div>
     <!-- js -->
     <script src="vendors/scripts/core.js"></script>
