@@ -98,6 +98,31 @@
         width: 80px;
         
     }
+    .IMG-DAY-ICON1{
+        margin-top: -5px;
+        width: 60px;
+        
+    }
+    .IMG-DAY-ICON2{
+        margin-top: -5px;
+        width: 60px;
+        
+    }
+    .IMG-DAY-ICON3{
+        margin-top: -10px;
+        width: 60px;
+        
+    }
+    .IMG-DAY-ICON4{
+        margin-top:0px;
+        width: 60px;
+        
+    }
+    .IMG-DAY-ICON5{
+        margin-top: 0px;
+        width: 60px;
+        
+    }
     .TXT_RAIN_VALUE_FIRST{
         color: #000000;
         margin-top:8px;
