@@ -124,10 +124,10 @@
         
     }
     .TXT_RAIN_VALUE_FIRST{
-        color: #000000;
+        color: #FFFFFF;
         margin-top:8px;
         font-size:25px;
-        font-weight: 900;
+        font-weight: 600;
     }
     .TXT_RAIN_VALUE{
         color: #5AA1D9;
@@ -136,5 +136,4 @@
         font-weight: 900;
     }
 
-    
 </style>

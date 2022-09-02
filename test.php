@@ -80,7 +80,7 @@
     var appKey = params.get('app-key');
 
     function FETCH_DATA() {
-        //api line 1
+//api line 1
         $.ajax({
             url: apiLine1 + "lat=" + lat + "&lon=" + lon + "&cnt=1&appid=" + appKey,
             method: 'GET',
@@ -162,59 +162,90 @@
                     $('#textWether').html("ฝนฟ้าคะนอง");
                 }
 
-
+               
                 const tc = temCs.toString().split('.');
                 $('#temC').html(tc[0]);
                 const tm = temCMax.toString().split('.');
                 $('#temMax').html(tm[0]);
                 const tn = temCMin.toString().split('.');
                 $('#temMin').html(tn[0]);
+
+                $('#rainValue-TH1').html("");
+                $('#rainValue-TH2').html("");
+                $('#rainValue-TH3').html("30%");
+                $('#rainValue-TH4').html("25%");
+                $('#rainValue-TH5').html("50%");
+
             }
         });
         //api line 2
-//10:00 =-1, 13:00=-2,17:00=-3,19:00=-4, 23:00=-5
+
         $.ajax({
             url: apiLine2 + "lat=" + lat + "&lon=" + lon + "&appid=" + appKey,
             method: 'GET',
             dataType: 'json',
             success: function(data) {
                 var obj = JSON.parse(JSON.stringify(data));
+                //7,15 ,23,31,39 (Time:00:00:00)
+
                 var now = new Date();
 var strNow = now.getHours()+""+now.getMinutes();
 // alert(parseInt(strNow));
                 var countTime = "";
                 if (parseInt(strNow) < 100) {
-                    countTime = 1;
+                    countTime = 7;
                     countTimeSet = 0;
                 }else if (parseInt(strNow) >= 100 && parseInt(strNow) < 1000) {
-                    countTime = 1;
+                    countTime =1;
                     countTimeSet = 0;
                 } else if (parseInt(strNow) >= 1000 && parseInt(strNow) < 1300) {
                     countTime = 1;
                     countTimeSet = 0;
                 } else if (parseInt(strNow) >= 1300 && parseInt(strNow) < 1700) {
-                    countTime = 3;
+                    countTime = 2;
                     countTimeSet = 0;
                 } else if (parseInt(strNow) >= 1700 && parseInt(strNow) < 2300) {
-                    countTime = 4;
+                    countTime = 3;
                     countTimeSet = 0;
                 } else if (parseInt(strNow) >= 2300) {
-                    alert(parseInt(strNow));
-                    countTime = 5;
+                    countTime = 4;
                     countTimeSet = 0;
                 } else {
-                    alert(parseInt(strNow));
+
                     countTime = 0;
                     countTimeSet = 0;
                 }
 
-                //7,15 ,23,31,39 (Time:00:00:00)
+// alert(parseInt(strNow) );
                 var codeDay1 = obj.list[8-countTime].weather[0].id;
                 var codeDay2 = obj.list[16-countTime].weather[0].id;
                 var codeDay3 = obj.list[24-countTime].weather[0].id;
                 var codeDay4 = obj.list[32-countTime].weather[0].id;
                 var codeDay5 = obj.list[40-countTime].weather[0].id;
+                // var rainMM =  obj.list[8-countTime].rain['3h'];
+            //   if(isEmpty(obj.list[8-countTime].rain['3h'])){
 
+            //   }
+//10:00 =-1, 13:00=-2,17:00=-3,19:00=-4, 23:00=-5
+                // alert(getRainConvert(rainMM));
+                // var time = today.getMinutes() + ":" + today.getSeconds();
+        //         var currentTime= new Date().toLocaleTimeString();
+        //        var splitTime = currentTime.toString().split(' ');
+        //        var numTimes =  splitTime[0].split(':');
+        //    alert(numTimes[0].numTimes[1]);
+                    
+
+                 var datePre1 = obj.list[8-countTime].dt_txt;
+                 var datePre2 = obj.list[16-countTime].dt_txt;
+                 var datePre3 = obj.list[24-countTime].dt_txt;
+                 var datePre4 = obj.list[32-countTime].dt_txt;
+                 var datePre5 = obj.list[40-countTime].dt_txt;
+                 $('#dateTest1').html(datePre1);
+                 $('#dateTest2').html(datePre2);
+                 $('#dateTest3').html(datePre3);
+                 $('#dateTest4').html(datePre4);
+                 $('#dateTest5').html(datePre5);
+                // alert(datePre);
                 var datePredict1 = obj.list[8-countTime].dt_txt;
                 const dSplit1 = new Date(datePredict1);
                 var txtDayThais1 = convertDay(dSplit1);
@@ -239,20 +270,20 @@ var strNow = now.getHours()+""+now.getMinutes();
                 $('#dayName-TH3').html(txtDayThais3);
                 $('#dayName-TH4').html(txtDayThais4);
                 $('#dayName-TH5').html(txtDayThais5);
-
+                
                 // alert(codeDay1+":"+codeDay2+":"+codeDay3+":"+codeDay4+":"+codeDay5);
                 //day1 
                 // 800 , 801, 803 , 300, 200, 000
                 // codeDay1 = "803";
                 if (codeDay1 == 800) {
                     $('#imageDay1').html('<img src="./img/sun.svg" >');
-                    document.getElementById('imageDay1').className = 'IMG-DAY-ICON1';
+                document.getElementById('imageDay1').className = 'IMG-DAY-ICON1';
                 } else if (codeDay1 == 801 || codeDay1 == 802) {
                     $('#imageDay1').html('<img src="./img/sun-cloud.svg" >');
-                    document.getElementById('imageDay1').className = 'IMG-DAY-ICON2';
+                document.getElementById('imageDay1').className = 'IMG-DAY-ICON2';
                 } else if (codeDay1 == 803 || codeDay1 == 804) {
                     $('#imageDay1').html('<img src="./img/cloud.svg" >');
-                    document.getElementById('imageDay1').className = 'IMG-DAY-ICON3';
+                document.getElementById('imageDay1').className = 'IMG-DAY-ICON3';
                 } else if (
                     codeDay1 == 300 ||
                     codeDay1 == 301 ||
@@ -273,10 +304,8 @@ var strNow = now.getHours()+""+now.getMinutes();
                     codeDay1 == 521 ||
                     codeDay1 == 522 ||
                     codeDay1 == 531) {
-                    $('#imageDay1').html('<img src="./img/rain-cloud.svg" >');
-                    document.getElementById('imageDay1').className = 'IMG-DAY-ICON4';
-                    var rainMM1 = obj.list[8-countTime].rain['3h'];
-                    $('#rainValue-TH1').html(getRainConvert(rainMM1));
+                        $('#imageDay1').html('<img src="./img/rain-cloud.svg" >');
+                document.getElementById('imageDay1').className = 'IMG-DAY-ICON4';
                 } else if (
                     codeDay1 == 200 ||
                     codeDay1 == 201 ||
@@ -288,287 +317,278 @@ var strNow = now.getHours()+""+now.getMinutes();
                     codeDay1 == 230 ||
                     codeDay1 == 231 ||
                     codeDay1 == 232) {
-                    $('#imageDay1').html('<img src="./img/rain-cloud-light.svg" >');
-                    document.getElementById('imageDay1').className = 'IMG-DAY-ICON5';
-                    var rainMM1 = obj.list[8-countTime].rain['3h'];
-                    $('#rainValue-TH1').htmlgetRainConvert((rainMM1));
+                        $('#imageDay1').html('<img src="./img/rain-cloud-light.svg" >');
+                document.getElementById('imageDay1').className = 'IMG-DAY-ICON5';
 
                 } else {
                     $('#imageDay1').html('<img src="./img/rain-cloud-light.svg" >');
-                    document.getElementById('imageDay1').className = 'IMG-DAY-ICON5';
+                document.getElementById('imageDay1').className = 'IMG-DAY-ICON5';
                 }
 
                 //day2
-                // 800 , 801, 803 , 300, 200, 000
+                 // 800 , 801, 803 , 300, 200, 000
                 //  codeDay2 = "200";
                 if (codeDay2 == 800) {
                     $('#imageDay2').html('<img src="./img/sun.svg" >');
-                    document.getElementById('imageDay2').className = 'IMG-DAY-ICON1';
-                } else if (codeDay2 == 801 || codeDay2 == 802) {
-                    $('#imageDay2').html('<img src="./img/sun-cloud.svg" >');
-                    document.getElementById('imageDay2').className = 'IMG-DAY-ICON2';
-                } else if (codeDay2 == 803 || codeDay2 == 804) {
-                    $('#imageDay2').html('<img src="./img/cloud.svg" >');
-                    document.getElementById('imageDay2').className = 'IMG-DAY-ICON3';
-                } else if (
-                    codeDay2 == 300 ||
-                    codeDay2 == 301 ||
-                    codeDay2 == 302 ||
-                    codeDay2 == 310 ||
-                    codeDay2 == 311 ||
-                    codeDay2 == 312 ||
-                    codeDay2 == 313 ||
-                    codeDay2 == 314 ||
-                    codeDay2 == 321 ||
-                    codeDay2 == 500 ||
-                    codeDay2 == 501 ||
-                    codeDay2 == 502 ||
-                    codeDay2 == 503 ||
-                    codeDay2 == 504 ||
-                    codeDay2 == 511 ||
-                    codeDay2 == 520 ||
-                    codeDay2 == 521 ||
-                    codeDay2 == 522 ||
-                    codeDay2 == 531) {
+                document.getElementById('imageDay2').className = 'IMG-DAY-ICON1';
+            } else if (codeDay2 == 801 || codeDay2 == 802) {
+                $('#imageDay2').html('<img src="./img/sun-cloud.svg" >');
+                document.getElementById('imageDay2').className = 'IMG-DAY-ICON2';
+            } else if (codeDay2 == 803 || codeDay2 == 804) {
+                $('#imageDay2').html('<img src="./img/cloud.svg" >');
+                document.getElementById('imageDay2').className = 'IMG-DAY-ICON3';
+            } else if (
+                codeDay2 == 300 ||
+                codeDay2 == 301 ||
+                codeDay2 == 302 ||
+                codeDay2 == 310 ||
+                codeDay2 == 311 ||
+                codeDay2 == 312 ||
+                codeDay2 == 313 ||
+                codeDay2 == 314 ||
+                codeDay2 == 321 ||
+                codeDay2 == 500 ||
+                codeDay2 == 501 ||
+                codeDay2 == 502 ||
+                codeDay2 == 503 ||
+                codeDay2 == 504 ||
+                codeDay2 == 511 ||
+                codeDay2 == 520 ||
+                codeDay2 == 521 ||
+                codeDay2 == 522 ||
+                codeDay2 == 531) {
                     $('#imageDay2').html('<img src="./img/rain-cloud.svg" >');
-                    document.getElementById('imageDay2').className = 'IMG-DAY-ICON4';
-                    var rainMM2 = obj.list[16-countTime].rain['3h'];
-                    $('#rainValue-TH2').html(getRainConvert(rainMM2));
-                } else if (
-                    codeDay2 == 200 ||
-                    codeDay2 == 201 ||
-                    codeDay2 == 202 ||
-                    codeDay2 == 210 ||
-                    codeDay2 == 211 ||
-                    codeDay2 == 212 ||
-                    codeDay2 == 221 ||
-                    codeDay2 == 230 ||
-                    codeDay2 == 231 ||
-                    codeDay2 == 232) {
-
+                document.getElementById('imageDay2').className = 'IMG-DAY-ICON4';
+            } else if (
+                codeDay2 == 200 ||
+                codeDay2 == 201 ||
+                codeDay2 == 202 ||
+                codeDay2 == 210 ||
+                codeDay2 == 211 ||
+                codeDay2 == 212 ||
+                codeDay2 == 221 ||
+                codeDay2 == 230 ||
+                codeDay2 == 231 ||
+                codeDay2 == 232) {
+              
                     $('#imageDay2').html('<img src="./img/rain-cloud-light.svg" >');
-                    document.getElementById('imageDay2').className = 'IMG-DAY-ICON5';
-                    var rainMM2 = obj.list[16-countTime].rain['3h'];
-                    $('#rainValue-TH2').html(getRainConvert(rainMM2));
-                } else {
-                    $('#imageDay2').html('<img src="./img/rain-cloud-light.svg" >');
-                    document.getElementById('imageDay2').className = 'IMG-DAY-ICON5';
-                }
+                document.getElementById('imageDay2').className = 'IMG-DAY-ICON5';
+            } else {
+                $('#imageDay2').html('<img src="./img/rain-cloud-light.svg" >');
+                document.getElementById('imageDay2').className = 'IMG-DAY-ICON5';
+            }
 
-                //day 3
-                // 800 , 801, 803 , 300, 200, 000
+            //day 3
+                   // 800 , 801, 803 , 300, 200, 000
                 //  codeDay3 = "800";
-                if (codeDay3 == 800) {
-                    $('#imageDay3').html('<img src="./img/sun.svg" >');
-                    document.getElementById('imageDay3').className = 'IMG-DAY-ICON1';
-                } else if (codeDay3 == 801 || codeDay3 == 802) {
-                    $('#imageDay3').html('<img src="./img/sun-cloud.svg" >');
-                    document.getElementById('imageDay3').className = 'IMG-DAY-ICON2';
-                } else if (codeDay3 == 803 || codeDay3 == 804) {
-                    $('#imageDay3').html('<img src="./img/cloud.svg" >');
-                    document.getElementById('imageDay3').className = 'IMG-DAY-ICON3';
-                } else if (
-                    codeDay3 == 300 ||
-                    codeDay3 == 301 ||
-                    codeDay3 == 302 ||
-                    codeDay3 == 310 ||
-                    codeDay3 == 311 ||
-                    codeDay3 == 312 ||
-                    codeDay3 == 313 ||
-                    codeDay3 == 314 ||
-                    codeDay3 == 321 ||
-                    codeDay3 == 500 ||
-                    codeDay3 == 501 ||
-                    codeDay3 == 502 ||
-                    codeDay3 == 503 ||
-                    codeDay3 == 504 ||
-                    codeDay3 == 511 ||
-                    codeDay3 == 520 ||
-                    codeDay3 == 521 ||
-                    codeDay3 == 522 ||
-                    codeDay3 == 531) {
+            if (codeDay3 == 800) {
+                $('#imageDay3').html('<img src="./img/sun.svg" >');
+                document.getElementById('imageDay3').className = 'IMG-DAY-ICON1';
+            } else if (codeDay3 == 801 || codeDay3 == 802) {
+                $('#imageDay3').html('<img src="./img/sun-cloud.svg" >');
+                document.getElementById('imageDay3').className = 'IMG-DAY-ICON2';
+            } else if (codeDay3 == 803 || codeDay3 == 804) {
+                $('#imageDay3').html('<img src="./img/cloud.svg" >');
+                document.getElementById('imageDay3').className = 'IMG-DAY-ICON3';
+            } else if (
+                codeDay3 == 300 ||
+                codeDay3 == 301 ||
+                codeDay3 == 302 ||
+                codeDay3 == 310 ||
+                codeDay3 == 311 ||
+                codeDay3 == 312 ||
+                codeDay3 == 313 ||
+                codeDay3 == 314 ||
+                codeDay3 == 321 ||
+                codeDay3 == 500 ||
+                codeDay3 == 501 ||
+                codeDay3 == 502 ||
+                codeDay3 == 503 ||
+                codeDay3 == 504 ||
+                codeDay3 == 511 ||
+                codeDay3 == 520 ||
+                codeDay3 == 521 ||
+                codeDay3 == 522 ||
+                codeDay3 == 531) {
                     $('#imageDay3').html('<img src="./img/rain-cloud.svg" >');
-                    document.getElementById('imageDay3').className = 'IMG-DAY-ICON4';
-                    var rainMM3 = obj.list[24-countTime].rain['3h'];
-                    $('#rainValue-TH3').html(getRainConvert(rainMM3));
-                } else if (
-                    codeDay3 == 200 ||
-                    codeDay3 == 201 ||
-                    codeDay3 == 202 ||
-                    codeDay3 == 210 ||
-                    codeDay3 == 211 ||
-                    codeDay3 == 212 ||
-                    codeDay3 == 221 ||
-                    codeDay3 == 230 ||
-                    codeDay3 == 231 ||
-                    codeDay3 == 232) {
+                document.getElementById('imageDay3').className = 'IMG-DAY-ICON4';
+            } else if (
+                codeDay3 == 200 ||
+                codeDay3 == 201 ||
+                codeDay3 == 202 ||
+                codeDay3 == 210 ||
+                codeDay3 == 211 ||
+                codeDay3 == 212 ||
+                codeDay3 == 221 ||
+                codeDay3 == 230 ||
+                codeDay3 == 231 ||
+                codeDay3 == 232) {
                     $('#imageDay3').html('<img src="./img/rain-cloud-light.svg" >');
-                    document.getElementById('imageDay3').className = 'IMG-DAY-ICON5';
-                    var rainMM3 = obj.list[24-countTime].rain['3h'];
-                    $('#rainValue-TH3').html(getRainConvert(rainMM3));
+                document.getElementById('imageDay3').className = 'IMG-DAY-ICON5';
 
-                } else {
-                    $('#imageDay3').html('<img src="./img/rain-cloud-light.svg" >');
-                    document.getElementById('imageDay3').className = 'IMG-DAY-ICON5';
-                }
+            } else {
+                $('#imageDay3').html('<img src="./img/rain-cloud-light.svg" >');
+                document.getElementById('imageDay3').className = 'IMG-DAY-ICON5';
+            }
 
-                //day 4
-                // 800 , 801, 803 , 300, 200, 000
-                //    codeDay4 = "200";
-                if (codeDay4 == 800) {
-                    $('#imageDay4').html('<img src="./img/sun.svg" >');
-                    document.getElementById('imageDay4').className = 'IMG-DAY-ICON1';
-                } else if (codeDay4 == 801 || codeDay4 == 802) {
-                    $('#imageDay4').html('<img src="./img/sun-cloud.svg" >');
-                    document.getElementById('imageDay4').className = 'IMG-DAY-ICON2';
-                } else if (codeDay4 == 803 || codeDay4 == 804) {
-                    $('#imageDay4').html('<img src="./img/cloud.svg" >');
-                    document.getElementById('imageDay4').className = 'IMG-DAY-ICON3';
-                } else if (
-                    codeDay4 == 300 ||
-                    codeDay4 == 301 ||
-                    codeDay4 == 302 ||
-                    codeDay4 == 310 ||
-                    codeDay4 == 311 ||
-                    codeDay4 == 312 ||
-                    codeDay4 == 313 ||
-                    codeDay4 == 314 ||
-                    codeDay4 == 321 ||
-                    codeDay4 == 500 ||
-                    codeDay4 == 501 ||
-                    codeDay4 == 502 ||
-                    codeDay4 == 503 ||
-                    codeDay4 == 504 ||
-                    codeDay4 == 511 ||
-                    codeDay4 == 520 ||
-                    codeDay4 == 521 ||
-                    codeDay4 == 522 ||
-                    codeDay4 == 531) {
+            //day 4
+                       // 800 , 801, 803 , 300, 200, 000
+            //    codeDay4 = "200";
+            if (codeDay4 == 800) {
+                $('#imageDay4').html('<img src="./img/sun.svg" >');
+                document.getElementById('imageDay4').className = 'IMG-DAY-ICON1';
+            } else if (codeDay4 == 801 || codeDay4 == 802) {
+                $('#imageDay4').html('<img src="./img/sun-cloud.svg" >');
+                document.getElementById('imageDay4').className = 'IMG-DAY-ICON2';
+            } else if (codeDay4 == 803 || codeDay4 == 804) {
+                $('#imageDay4').html('<img src="./img/cloud.svg" >');
+                document.getElementById('imageDay4').className = 'IMG-DAY-ICON3';
+            } else if (
+                codeDay4 == 300 ||
+                codeDay4 == 301 ||
+                codeDay4 == 302 ||
+                codeDay4 == 310 ||
+                codeDay4 == 311 ||
+                codeDay4 == 312 ||
+                codeDay4 == 313 ||
+                codeDay4 == 314 ||
+                codeDay4 == 321 ||
+                codeDay4 == 500 ||
+                codeDay4 == 501 ||
+                codeDay4 == 502 ||
+                codeDay4 == 503 ||
+                codeDay4 == 504 ||
+                codeDay4 == 511 ||
+                codeDay4 == 520 ||
+                codeDay4 == 521 ||
+                codeDay4 == 522 ||
+                codeDay4 == 531) {
                     $('#imageDay4').html('<img src="./img/rain-cloud.svg" >');
-                    document.getElementById('imageDay4').className = 'IMG-DAY-ICON4';
-                    var rainMM4 = obj.list[32-countTime].rain['3h'];
-                    $('#rainValue-TH4').html(getRainConvert(rainMM4));
-                } else if (
-                    codeDay4 == 200 ||
-                    codeDay4 == 201 ||
-                    codeDay4 == 202 ||
-                    codeDay4 == 210 ||
-                    codeDay4 == 211 ||
-                    codeDay4 == 212 ||
-                    codeDay4 == 221 ||
-                    codeDay4 == 230 ||
-                    codeDay4 == 231 ||
-                    codeDay4 == 232) {
+                document.getElementById('imageDay4').className = 'IMG-DAY-ICON4';
+            } else if (
+                codeDay4 == 200 ||
+                codeDay4 == 201 ||
+                codeDay4 == 202 ||
+                codeDay4 == 210 ||
+                codeDay4 == 211 ||
+                codeDay4 == 212 ||
+                codeDay4 == 221 ||
+                codeDay4 == 230 ||
+                codeDay4 == 231 ||
+                codeDay4 == 232) {
                     $('#imageDay4').html('<img src="./img/rain-cloud-light.svg" >');
-                    document.getElementById('imageDay4').className = 'IMG-DAY-ICON5';
-                    var rainMM4 = obj.list[32-countTime].rain['3h'];
-                    $('#rainValue-TH4').html(getRainConvert(rainMM4));
-                } else {
-                    $('#imageDay4').html('<img src="./img/rain-cloud-light.svg" >');
-                    document.getElementById('imageDay4').className = 'IMG-DAY-ICON5';
-                }
+                document.getElementById('imageDay4').className = 'IMG-DAY-ICON5';
 
-                //day 5
-                // 800 , 801, 803 , 300, 200, 000
+            } else {
+                $('#imageDay4').html('<img src="./img/rain-cloud-light.svg" >');
+                document.getElementById('imageDay4').className = 'IMG-DAY-ICON5';
+            }
+
+            //day 5
+                       // 800 , 801, 803 , 300, 200, 000
                 //  codeDay5 = codeDay4;
-                if (codeDay5 == 800) {
-                    $('#imageDay5').html('<img src="./img/sun.svg" >');
-                    document.getElementById('imageDay5').className = 'IMG-DAY-ICON1';
-                } else if (codeDay5 == 801 || codeDay5 == 802) {
-                    $('#imageDay5').html('<img src="./img/sun-cloud.svg" >');
-                    document.getElementById('imageDay5').className = 'IMG-DAY-ICON2';
-                } else if (codeDay5 == 803 || codeDay5 == 804) {
-                    $('#imageDay5').html('<img src="./img/cloud.svg" >');
-                    document.getElementById('imageDay5').className = 'IMG-DAY-ICON3';
-                } else if (
-                    codeDay5 == 300 ||
-                    codeDay5 == 301 ||
-                    codeDay5 == 302 ||
-                    codeDay5 == 310 ||
-                    codeDay5 == 311 ||
-                    codeDay5 == 312 ||
-                    codeDay5 == 313 ||
-                    codeDay5 == 314 ||
-                    codeDay5 == 321 ||
-                    codeDay5 == 500 ||
-                    codeDay5 == 501 ||
-                    codeDay5 == 502 ||
-                    codeDay5 == 503 ||
-                    codeDay5 == 504 ||
-                    codeDay5 == 511 ||
-                    codeDay5 == 520 ||
-                    codeDay5 == 521 ||
-                    codeDay5 == 522 ||
-                    codeDay5 == 531) {
+            if (codeDay5 == 800) {
+                $('#imageDay5').html('<img src="./img/sun.svg" >');
+                document.getElementById('imageDay5').className = 'IMG-DAY-ICON1';
+            } else if (codeDay5 == 801 || codeDay5 == 802) {
+                $('#imageDay5').html('<img src="./img/sun-cloud.svg" >');
+                document.getElementById('imageDay5').className = 'IMG-DAY-ICON2';
+            } else if (codeDay5 == 803 || codeDay5 == 804) {
+                $('#imageDay5').html('<img src="./img/cloud.svg" >');
+                document.getElementById('imageDay5').className = 'IMG-DAY-ICON3';
+            } else if (
+                codeDay5 == 300 ||
+                codeDay5 == 301 ||
+                codeDay5 == 302 ||
+                codeDay5 == 310 ||
+                codeDay5 == 311 ||
+                codeDay5 == 312 ||
+                codeDay5 == 313 ||
+                codeDay5 == 314 ||
+                codeDay5 == 321 ||
+                codeDay5 == 500 ||
+                codeDay5 == 501 ||
+                codeDay5 == 502 ||
+                codeDay5 == 503 ||
+                codeDay5 == 504 ||
+                codeDay5 == 511 ||
+                codeDay5 == 520 ||
+                codeDay5 == 521 ||
+                codeDay5 == 522 ||
+                codeDay5 == 531) {
                     $('#imageDay5').html('<img src="./img/rain-cloud.svg" >');
-                    document.getElementById('imageDay5').className = 'IMG-DAY-ICON4';
-                    var rainMM5 = obj.list[40-countTime].rain['3h'];
-                    $('#rainValue-TH5').html(getRainConvert(rainMM5));
-                } else if (
-                    codeDay5 == 200 ||
-                    codeDay5 == 201 ||
-                    codeDay5 == 202 ||
-                    codeDay5 == 210 ||
-                    codeDay5 == 211 ||
-                    codeDay5 == 212 ||
-                    codeDay5 == 221 ||
-                    codeDay5 == 230 ||
-                    codeDay5 == 231 ||
-                    codeDay5 == 232) {
+                document.getElementById('imageDay5').className = 'IMG-DAY-ICON4';
+            } else if (
+                codeDay5 == 200 ||
+                codeDay5 == 201 ||
+                codeDay5 == 202 ||
+                codeDay5 == 210 ||
+                codeDay5 == 211 ||
+                codeDay5 == 212 ||
+                codeDay5 == 221 ||
+                codeDay5 == 230 ||
+                codeDay5 == 231 ||
+                codeDay5 == 232) {
                     $('#imageDay5').html('<img src="./img/rain-cloud-light.svg" >');
-                    document.getElementById('imageDay5').className = 'IMG-DAY-ICON5';
-                    var rainMM5 = obj.list[40-countTime].rain['3h'];
-                    $('#rainValue-TH5').html(getRainConvert(rainMM5));
+                document.getElementById('imageDay5').className = 'IMG-DAY-ICON5';
 
-                } else {
-                    $('#imageDay5').html('<img src="./img/rain-cloud-light.svg" >');
-                    document.getElementById('imageDay5').className = 'IMG-DAY-ICON5';
-                }
-
-
+            } else {
+                $('#imageDay5').html('<img src="./img/rain-cloud-light.svg" >');
+                document.getElementById('imageDay5').className = 'IMG-DAY-ICON5';
+            }
+   
+          
             }
         });
     }
-    setInterval(FETCH_DATA, 1);
+    setInterval(FETCH_DATA, 1000);
 
-    function convertDay(dayNames) {
+    function convertDay(dayNames){
         const dSplit = new Date(dayNames);
-
-        var dateP = dSplit.toString().split(" ");
-        var txtDayThai = "";
-        if (dateP[0] == "Sun") {
-            txtDayThai = "อา";
-        } else if (dateP[0] == "Mon") {
-            txtDayThai = "จ";
-        } else if (dateP[0] == "Tue") {
-            txtDayThai = "อ";
-        } else if (dateP[0] == "Wed") {
-            txtDayThai = "พ";
-        } else if (dateP[0] == "Thu") {
-            txtDayThai = "พฤ";
-        } else if (dateP[0] == "Fri") {
-            txtDayThai = "ศ";
-        } else if (dateP[0] == "Sat") {
-            txtDayThai = "ส";
-        }
-
-        return txtDayThai;
+               
+               var dateP =  dSplit.toString().split(" ");
+               var txtDayThai = "";
+               if(dateP[0] == "Sun"){
+                txtDayThai ="อา";
+               }
+               else if(dateP[0] == "Mon"){
+                txtDayThai ="จ";
+               }
+               else if(dateP[0] == "Tue"){
+                txtDayThai ="อ";
+               }
+               else if(dateP[0] == "Wed"){
+                txtDayThai ="พ";
+               }
+               else if(dateP[0] == "Thu"){
+                txtDayThai ="พฤ";
+               }
+               else if(dateP[0] == "Fri"){
+                txtDayThai ="ศ";
+               }
+               else if(dateP[0] == "Sat"){
+                txtDayThai ="ส";
+               }
+   
+return txtDayThai;
 
     }
-
-    function getRainConvert(rainValue) {
-        var rainPer = "";
-        if (rainValue <= 10) {
-            rainPer = "25%";
-        } else if (10.1 >= rainValue <= 35) {
-            rainPer = "50%";
-        } else if (35.1 >= rainValue <= 90) {
-            rainPer = "75%";
-        } else if (90.1 >= rainValue) {
-            rainPer = "100%";
-        }
-
-        return rainPer;
+    function getRainConvert(rainValue){
+       var rainPer ="";
+               if(rainValue <= 10){
+                rainPer ="25%";
+               }
+               else if(10.1 >= rainValue <= 35){
+                rainPer ="50%";
+               }
+               else if(35.1 >= rainValue <= 90){
+                rainPer ="75%";
+               }
+               else if(90.1 >= rainValue){
+                rainPer ="100%";
+               }
+    
+return rainPer;
 
     }
 </script>
@@ -577,7 +597,7 @@ var strNow = now.getHours()+""+now.getMinutes();
 <!-- Preloader -->
 
 <body style="background-color:#FFFFFF; ">
-    <!-- <div class="pre-loader" style="width:641px;height:528px;background-color: #DDE3EF;">
+    <div class="pre-loader" style="width:641px;height:528px;background-color: #DDE3EF;">
         <div class="pre-loader-box" style="margin-top: -50px;">
             <div class="loader-logo"><img src="img/weather/icon.png" alt=""></div>
             <div class='loader-progress' id="progress_div" style="margin-top: -20px;">
@@ -588,7 +608,7 @@ var strNow = now.getHours()+""+now.getMinutes();
 
             </div>
         </div>
-    </div> -->
+    </div>
     <div class="object-wrapper">
         <div style="width:641px;height:528px; background-color: #DDE3EF;" align="center">
             <?php include('txt-header.php'); ?>
@@ -689,19 +709,19 @@ var strNow = now.getHours()+""+now.getMinutes();
                     </tr>
                     <tr>
                         <td align="center">
-                            <div align="center" id="imageDay1"></div>
+                        <div align="center" id="imageDay1"></div>
                         </td>
                         <td align="center">
-                            <div align="center" id="imageDay2"></div>
+                        <div align="center" id="imageDay2"></div>
                         </td>
                         <td align="center">
-                            <div align="center" id="imageDay3"></div>
+                        <div align="center" id="imageDay3"></div>
                         </td>
                         <td align="center">
-                            <div align="center" id="imageDay4"></div>
+                        <div align="center" id="imageDay4"></div>
                         </td>
                         <td align="center">
-                            <div align="center" id="imageDay5"></div>
+                        <div align="center" id="imageDay5"></div>
                         </td>
                     </tr>
                     <tr>
@@ -728,7 +748,14 @@ var strNow = now.getHours()+""+now.getMinutes();
                 </div>
             </div>
         </div>
-
+    
+    </div>
+    <div style="margin-top: -400px;">
+    <div align="center" class="TXT_DAYS" id="dateTest1"></div>
+        <div align="center" class="TXT_DAYS" id="dateTest2"></div>
+        <div align="center" class="TXT_DAYS" id="dateTest3"></div>
+        <div align="center" class="TXT_DAYS" id="dateTest4"></div>
+        <div align="center" class="TXT_DAYS" id="dateTest5"></div>
     </div>
     <!-- js -->
     <script src="vendors/scripts/core.js"></script>
