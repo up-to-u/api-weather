@@ -285,9 +285,10 @@ $result = $dh->query($sql);
       </div>
 
       <!-- Modal footer -->
-      <div class="modal-footer">
+      <div  align = "center">
         <button type="submit" name="submitConfirm" value="ConfirmUpdate" class="btn btn-success" >Confirm Update</button>
       </div>
+      <br>  <br> <br>
       </form>
     </div>
   </div>

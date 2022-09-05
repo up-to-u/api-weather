@@ -579,16 +579,20 @@
                             <!-- <img src="" id="imageMain"  class="ICON-IMG-MAIN" style="position: absolute;"> -->
                             <div align="center" id="imageMain"></div>
                         </td>
-                        <td width="34%" align="center">
+                        <td width="1%" align="right">     <div class="vl" style="align-items:right;"></div></td>
+                        <td width="32%" align="center">
+                     
                             <img src="./img/cycle.svg" class="cycles-main" style="position: absolute; ">
-                            <div align="center" class="TEMP-MAIN" id="temC">
-                            </div>
+                            <div align="center" class="TEMP-MAIN" id="temC" ></div>
+                       
                         </td>
+                        <td width="1%" align="right">     <div class="vl"></div></td>
                         <td width="33%">
                             <div align="center" class="TXT_F1" id="dayNames">
                             </div>
 
                         </td>
+                        
                     </tr>
                     <tr height="35%">
                         <td width="33%" align="center">
@@ -596,7 +600,8 @@
                             </div>
 
                         </td>
-                        <td width="34%">
+                        <td width="1%" align="center">  </td>
+                        <td width="32%">
                             <table width="100%">
                                 <tr>
                                     <td align="center" width="50%">
@@ -614,6 +619,7 @@
                                 </tr>
                             </table>
                         </td>
+                        <td width="1%" align="right">  </td>
                         <td width="33%" align="center">
                             <table class="TXT_F4">
                                 <tr>
