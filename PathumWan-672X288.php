@@ -552,7 +552,7 @@
 
     }
 </script>
-<?php include('style-font_641X528.php'); ?>
+<?php include('style-font_672X288.php'); ?>
 <?php include('style-background.php'); ?>
 <!-- Preloader -->
 
@@ -570,9 +570,9 @@
         </div>
     </div> -->
     <div class="object-wrapper">
-        <div style="width:641px;height:528px; background-color: #DDE3EF;" align="center">
+        <div style="width:672px;height:288px; background-color: #DDE3EF;" align="center">
             <?php include('txt-header.php'); ?>
-            <div id="backgroundHeader" style="width:590px;height:200px; margin-left: 7px; margin-right:7px;margin-top:20px;border-radius: 20px;box-shadow:1px 6px 14px #959595;">
+            <div id="backgroundHeader" style="width:635px;height:110px; margin-left: 7px; margin-right:7px;margin-top:5px;border-radius: 20px;box-shadow:1px 6px 14px #959595;">
                 <table width="100%" border="0" style="color:#FFFFFF; height:100%;">
                     <tr height="65%">
                         <td width="33%">
@@ -649,7 +649,7 @@
                     </tr>
                 </table>
             </div>
-            <div id="backgroundFooter" style="width:590px;height:200px; margin-left: 7px; margin-right:7px;margin-top:15px;border-radius: 20px;box-shadow:1px 6px 14px #959595;" align="right">
+            <div id="backgroundFooter" style="width:635px;height:110px; margin-left: 7px; margin-right:7px;margin-top:15px;border-radius: 20px;box-shadow:1px 6px 14px #959595;" align="right">
                 <table style="position: absolute;" width="590" border="0">
                     <tr>
                         <td width="20%">
@@ -709,7 +709,7 @@
                         </td>
                     </tr>
                 </table>
-                <div style="width:477px;height:200px;background-color:#FFFFFF;margin-top:15px;border-radius: 20px;">
+                <div style="width:477px;height:110px;background-color:#FFFFFF;margin-top:15px;border-radius: 20px;">
 
                 </div>
             </div>

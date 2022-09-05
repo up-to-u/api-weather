@@ -15,8 +15,8 @@
 
     /* API LINE 1 */
     .TXT-HEADER {
-        margin: 20px;
-        font-size: 30px;
+        margin: 5px;
+        font-size: 20px;
         font-family: 'Noto Sans Thai', sans-serif;
     }
 
@@ -162,7 +162,7 @@
 
     .vl {
         border-left: 1px solid white;
-        height: 99px;
+        height: 70px;
         align-items:center;
         margin-top: 20px;
         margin-left: 5px;

@@ -90,7 +90,7 @@
 
     .TXT_F4 {
         font-size: 50px;
-        margin-top: -5px;
+        margin-top: -7px;
     }
 
     .cycles {
@@ -162,10 +162,10 @@
 
     .vl {
         border-left: 1px solid white;
-        height: 99px;
+        height: 150px;
         align-items:center;
-        margin-top: 20px;
-        margin-left: 5px;
+        margin-top: 0px;
+        margin-left: 7px;
         /* display:inline; */
     }
 </style>
