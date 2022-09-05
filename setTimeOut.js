@@ -1,10 +1,10 @@
 
 function setTimeOuts1($timeOut){
-    $timeOut = 60;
+    $timeOut = 1;
     return $timeOut;
 }
 function setTimeOuts2($timeOut){
-    $timeOut = 60;
+    $timeOut = 1;
     return $timeOut;
 }
 function setTimeOuts3($timeOut){

@@ -14,6 +14,7 @@
     <link rel="stylesheet" type="text/css" href="vendors/styles/style.css">
     <link rel="stylesheet" href="style.css">
 </head>
+<script src="./js/jquery.min.js"></script>
 <script src="setTimeArray.js"></script>
 <script src="setTimeOut.js"></script>
 <script>
