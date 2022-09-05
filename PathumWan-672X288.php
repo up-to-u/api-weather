@@ -183,6 +183,7 @@
                 var now = new Date();
                 var strNow = pad2(now.getHours()) + "" + pad2(now.getMinutes());
                 countTime = setTimes(parseInt(strNow));
+
                 //7,15 ,23,31,39 (Time:00:00:00)
                 var codeDay1 = obj.list[8 - countTime].weather[0].id;
                 var codeDay2 = obj.list[16 - countTime].weather[0].id;
@@ -218,7 +219,7 @@
                 // alert(codeDay1+":"+codeDay2+":"+codeDay3+":"+codeDay4+":"+codeDay5);
                 //day1 
                 // 800 , 801, 803 , 300, 200, 000
-                // codeDay1 = "803";
+                // codeDay1 = "200";
                 if (codeDay1 == 800) {
                     $('#imageDay1').html('<img src="./img/sun.svg" >');
                     document.getElementById('imageDay1').className = 'IMG-DAY-ICON1';
@@ -572,35 +573,39 @@
     <div class="object-wrapper">
         <div style="width:672px;height:288px; background-color: #DDE3EF;" align="center">
             <?php include('txt-header.php'); ?>
-            <div id="backgroundHeader" style="width:635px;height:110px; margin-left: 7px; margin-right:7px;margin-top:5px;border-radius: 20px;box-shadow:1px 6px 14px #959595;">
+            <div id="backgroundHeader" style="width:640px;height:110px; margin-left: 7px; margin-right:7px;margin-top:0px;border-radius: 20px;box-shadow:1px 6px 14px #959595;">
                 <table width="100%" border="0" style="color:#FFFFFF; height:100%;">
-                <tr height="65%">
+                    <tr height="65%">
                         <td width="33%">
                             <!-- <img src="" id="imageMain"  class="ICON-IMG-MAIN" style="position: absolute;"> -->
                             <div align="center" id="imageMain"></div>
                         </td>
-                        <td width="1%" align="center" rowspan="2">     <div class="vl" style="align-items:center;"></div></td>
-                        <td width="32%" align="center">
-                     
-                            <img src="./img/cycle.svg" class="cycles-main" style="position: absolute; ">
-                            <div align="center" class="TEMP-MAIN" id="temC" ></div>
-                       
+                        <td width="1%" align="center" rowspan="2">
+                            <div class="vl" style="align-items:center;"></div>
                         </td>
-                        <td width="1%" align="center" rowspan="2">     <div class="vl"></div></td>
+                        <td width="32%" align="center">
+
+                            <img src="./img/cycle.svg" class="cycles-main" style="position: absolute; ">
+                            <div align="center" class="TEMP-MAIN" id="temC"></div>
+
+                        </td>
+                        <td width="1%" align="center" rowspan="2">
+                            <div class="vl"></div>
+                        </td>
                         <td width="33%">
                             <div align="center" class="TXT_F1" id="dayNames">
                             </div>
 
                         </td>
-                        
+
                     </tr>
                     <tr height="35%">
                         <td width="33%" align="center">
-                            <div align="center" class="TXT_F2" style="margin-bottom:-5px;margin-top:-5px;" id="textWether">
+                            <div align="center" class="TXT_F2" style="margin-bottom:-5px;margin-top:-8px;" id="textWether">
                             </div>
 
                         </td>
-                        <td width="1%" align="center">  </td>
+
                         <td width="32%">
                             <table width="100%">
                                 <tr>
@@ -619,7 +624,7 @@
                                 </tr>
                             </table>
                         </td>
-                        <td width="1%" align="right">  </td>
+
                         <td width="33%" align="center">
                             <table class="TXT_F4">
                                 <tr>
@@ -649,8 +654,8 @@
                     </tr>
                 </table>
             </div>
-            <div id="backgroundFooter" style="width:635px;height:110px; margin-left: 7px; margin-right:7px;margin-top:15px;border-radius: 20px;box-shadow:1px 6px 14px #959595;" align="right">
-                <table style="position: absolute;" width="590" border="0">
+            <div id="backgroundFooter" style="width:640px;height:110px; margin-left: 7px; margin-right:7px;margin-top:-2px;border-radius: 20px;box-shadow:1px 6px 14px #959595;" align="right">
+                <table style="position: absolute;" width="640" border="0">
                     <tr>
                         <td width="20%">
                             <div align="center" class="TXT_DAYS-FIRST" id="dayName-TH1">
@@ -709,7 +714,7 @@
                         </td>
                     </tr>
                 </table>
-                <div style="width:477px;height:110px;background-color:#FFFFFF;margin-top:15px;border-radius: 20px;">
+                <div style="width:508px;height:110px;background-color:#FFFFFF;margin-top:15px;border-radius: 20px;">
 
                 </div>
             </div>

@@ -22,92 +22,101 @@
 
     .ICON-IMG-MAIN1 {
         position: absolute;
-        width: 125px;
-        margin-left: -59px;
-        margin-top: -50px;
+        /* width: 125px; */
+        width: 65px;
+        margin-left: -30px;
+        margin-top: -27px;
     }
 
     .ICON-IMG-MAIN2 {
         position: absolute;
-        width: 125px;
-        margin-left: -63px;
-        margin-top: -50px;
+        /* width: 125px; */
+        width: 65px;
+        margin-left: -30px;
+        margin-top: -27px;
     }
 
     .ICON-IMG-MAIN3 {
         position: absolute;
-        width: 130px;
-        margin-left: -59px;
-        margin-top: -40px;
+        /* width: 130px; */
+        width: 77px;
+        margin-left: -33px;
+        margin-top: -24px;
     }
 
     .ICON-IMG-MAIN4 {
         position: absolute;
-        width: 110px;
-        margin-left: -57px;
-        margin-top: -50px;
+        /* width: 110px; */
+        width: 57px;
+        margin-left: -24px;
+        margin-top: -26px;
     }
 
     .ICON-IMG-MAIN5 {
         position: absolute;
-        width: 110px;
-        margin-left: -55px;
-        margin-top: -50px;
+        /* width: 110px; */
+        width: 55px;
+        margin-left: -22px;
+        margin-top: -26px;
     }
 
     .TEMP-MAIN {
-        font-size: 77px;
-        margin-top: 38px;
+        font-size: 38px;
+        margin-top: 10px;
         line-height: 60px;
         font-weight: 900;
     }
 
     .cycles-main {
-        width: 20px;
-        margin-left: 38px;
-        margin-top: 15px;
+        width: 12px;
+        margin-left: 18px;
+        margin-top: 11px;
     }
 
     .TXT_F1 {
-        margin-top: 20px;
-        font-size: 46px;
+        margin-top: 6px;
+        font-size: 26px;
     }
 
     .TXT_F2 {
-        font-size: 35px;
+      
+        font-size: 25px;
     }
 
     .TXT_F3MAX {
-        font-size: 32px;
+        margin-top: -5px;
+        font-size: 22px;
         font-weight: 1000;
     }
 
     .TXT_F3MIN {
-        font-size: 32px;
+        margin-top: -5px;
+        font-size: 22px;
         font-weight: 10;
 
     }
 
     .TXT_F4 {
-        font-size: 50px;
+        font-size: 30px;
         margin-top: -7px;
     }
 
     .cycles {
-        width: 13px;
-        margin-left: 20px;
+        width: 9px;
+        margin-left: 13px;
+        margin-top: -10px;
     }
 
     /* API LINE 2 */
     .TXT_DAYS-FIRST {
-        margin-top: 5px;
-        font-size: 43px;
+        margin-top: 4px;
+        font-size:26px;
         color: #FFFFFF;
     }
 
     .TXT_DAYS {
-        margin-top: 5px;
-        font-size: 43px;
+        margin-top: 4px;
+        font-size: 26px;
     }
 
     .IMG-DAY-ICON {
@@ -118,54 +127,54 @@
 
     .IMG-DAY-ICON1 {
         margin-top: -5px;
-        width: 60px;
+        width: 38px;
 
     }
 
     .IMG-DAY-ICON2 {
         margin-top: -5px;
-        width: 60px;
+        width: 38px;
 
     }
 
     .IMG-DAY-ICON3 {
         margin-top: -10px;
-        width: 60px;
+        width: 38px;
 
     }
 
     .IMG-DAY-ICON4 {
         margin-top: 0px;
-        width: 60px;
+        width: 38px;
 
     }
 
     .IMG-DAY-ICON5 {
         margin-top: 0px;
-        width: 60px;
+        width: 38px;
 
     }
 
     .TXT_RAIN_VALUE_FIRST {
         color: #FFFFFF;
-        margin-top: 8px;
-        font-size: 25px;
+        margin-top: 1px;
+        font-size: 13px;
         font-weight: 600;
     }
 
     .TXT_RAIN_VALUE {
         color: #5AA1D9;
-        margin-top: 8px;
-        font-size: 25px;
+        margin-top: 1px;
+        font-size:13px;
         font-weight: 900;
     }
 
     .vl {
         border-left: 1px solid white;
-        height: 150px;
+        height: 86px;
         align-items:center;
-        margin-top: 0px;
-        margin-left: 7px;
+        margin-top: -4px;
+        margin-left: 2px;
         /* display:inline; */
     }
 </style>

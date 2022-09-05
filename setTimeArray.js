@@ -17,7 +17,7 @@ function setTimes($times){
         return countTime = 4;
      
     } else if ($times >= 2300) {
-        return countTime = 5;
+        return countTime = 6;
      
     } else {
         return countTime = 0;

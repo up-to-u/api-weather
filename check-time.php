@@ -15,6 +15,7 @@
     <link rel="stylesheet" href="style.css">
 </head>
 <script src="setTimeArray.js"></script>
+<script src="setTimeOut.js"></script>
 <script>
     function run_the_clock() {
         var date = new Date();
