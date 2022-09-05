@@ -654,7 +654,7 @@
                     </tr>
                 </table>
             </div>
-            <div id="backgroundFooter" style="width:640px;height:110px; margin-left: 7px; margin-right:7px;margin-top:-2px;border-radius: 20px;box-shadow:1px 6px 14px #959595;" align="right">
+            <div id="backgroundFooter" style="width:640px;height:110px; margin-left: 7px; margin-right:7px;margin-top:-4px;border-radius: 20px;box-shadow:1px 6px 14px #959595;" align="right">
                 <table style="position: absolute;" width="640" border="0">
                     <tr>
                         <td width="20%">
