@@ -574,19 +574,19 @@
             <?php include('txt-header.php'); ?>
             <div id="backgroundHeader" style="width:635px;height:110px; margin-left: 7px; margin-right:7px;margin-top:5px;border-radius: 20px;box-shadow:1px 6px 14px #959595;">
                 <table width="100%" border="0" style="color:#FFFFFF; height:100%;">
-                    <tr height="65%">
+                <tr height="65%">
                         <td width="33%">
                             <!-- <img src="" id="imageMain"  class="ICON-IMG-MAIN" style="position: absolute;"> -->
                             <div align="center" id="imageMain"></div>
                         </td>
-                        <td width="1%" align="right">     <div class="vl" style="align-items:right;"></div></td>
+                        <td width="1%" align="center" rowspan="2">     <div class="vl" style="align-items:center;"></div></td>
                         <td width="32%" align="center">
                      
                             <img src="./img/cycle.svg" class="cycles-main" style="position: absolute; ">
                             <div align="center" class="TEMP-MAIN" id="temC" ></div>
                        
                         </td>
-                        <td width="1%" align="right">     <div class="vl"></div></td>
+                        <td width="1%" align="center" rowspan="2">     <div class="vl"></div></td>
                         <td width="33%">
                             <div align="center" class="TXT_F1" id="dayNames">
                             </div>

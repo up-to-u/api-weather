@@ -15,8 +15,8 @@
 
     /* API LINE 1 */
     .TXT-HEADER {
-        margin: 5px;
-        font-size: 20px;
+        margin: 8px;
+        font-size: 18px;
         font-family: 'Noto Sans Thai', sans-serif;
     }
 
@@ -90,7 +90,7 @@
 
     .TXT_F4 {
         font-size: 50px;
-        margin-top: -5px;
+        margin-top: -7px;
     }
 
     .cycles {
@@ -162,11 +162,10 @@
 
     .vl {
         border-left: 1px solid white;
-        height: 70px;
+        height: 150px;
         align-items:center;
-        margin-top: 20px;
-        margin-left: 5px;
+        margin-top: 0px;
+        margin-left: 7px;
         /* display:inline; */
     }
-</style>
 </style>
