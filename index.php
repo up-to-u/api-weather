@@ -1,4 +1,11 @@
 <?php include("connect.php"); ?>
+<?php 
+if($_POST['submitConfirm'] == "ConfirmUpdate"){
+    mysqli_query($conn,"UPDATE api_location SET s_key='".$_POST['dataAppKeys']."', latitude='".$_POST['dataLats']."', longitude='".$_POST['dataLons']."' WHERE id='".$_POST['dataIDs']."'");
+}else{
+
+}
+?>
 <?php
 $sql = "SELECT api_line_control FROM api_line WHERE id = 1";
 $result = $dh->query($sql);
@@ -136,11 +143,11 @@ body { margin: 20; padding: 20; }
                                                                 <tr>
                                                                     <th>Location name</th>
                                                                     <!-- <th>Email</th> -->
-                                                                    <th>[ Ltitude, Longitude ]</th>
+                                                                    <th>[Time Prediction] ,&emsp;&emsp;&emsp; [ Latitude, Longitude, AppKey ]</th>
                                                               
                                                                     <th>Size</th>
-                                                                    <th align="center">API Line 1</th>
-                                                                    <th align="center">API Line 2</th>
+                                                                    <th align="center">API Line 1 (.json)</th>
+                                                                    <th align="center">API Line 2 (.json)</th>
  
                                                                 </tr>
                                                             </thead>
@@ -155,7 +162,12 @@ $result = $dh->query($sql);
                                                                     <td><?=$row['location_name_en']; ?> (<?=$row['location_name_th']; ?>)</td>
                                                                     <!-- <td><?=$row['email']; ?> </td> -->
                                                                  
-                                                                    <td>[ <?=$row['latitude']; ?>, <?=$row['longitude']; ?> ] </td>
+                                                                    <td>
+                                                                    <a href="check-time.php?api-line1=<?=$result_api_1;?>&api-line2=<?=$result_api_2;?>&lat=<?=$row['latitude']; ?>&lon=<?=$row['longitude']; ?>&app-key=<?=$row['s_key']; ?>" target="_blank"  style="color: #404E67;">
+                                                                   <i class="icofont icofont-time"></i> : Time Prediction
+</a>
+                                                                    
+                                                                        &emsp;&emsp;<a href="#" class="editData"  data-id="<?= $row['id']; ?>" data-lat="<?= $row['latitude']; ?>" data-lon="<?= $row['longitude']; ?>" data-appKey="<?= $row['s_key']; ?>" data-toggle="modal" data-target="#myModal"><i class="icofont icofont-ui-edit"></i> : [ <?=$row['latitude']; ?>, <?=$row['longitude']; ?>, AppKey ] </a></td>
                                                                     
                                                                     <td>
                                                                     <?php
@@ -221,31 +233,62 @@ $result = $dh->query($sql);
               <!--start model-->
 
                                                    <!-- Button to Open the Modal -->
-
+                                              
 
 <!-- The Modal -->
-<div class="modal" id="myModal">
-  <div class="modal-dialog">
+<div class="modal fade" id="myModal">
+  <div class="modal-dialog ">
     <div class="modal-content">
 
       <!-- Modal Header -->
       <div class="modal-header">
-        <h4 class="modal-title">Modal Heading</h4>
+        <h4 class="modal-title"><i class="icofont icofont-ui-settings"></i> Setting</h4>
         <button type="button" class="close" data-dismiss="modal">&times;</button>
       </div>
 
       <!-- Modal body -->
-      <div class="modal-body" style="height:400px;">
-
-
-                                                        <div id="map" style="width:100%"></div>  
+      <div class="modal-body">
+      <!-- start contain -->
+ 
+                                                
+                                                <div class="card-block">
+                                                   
+                                                    <form action="index.php" method="POST">
+                                                        
+                                                
+                                                        <div class="form-group row">
+                                                            <label class="col-sm-2 col-form-label">Latitude</label>
+                                                            <div class="col-sm-10">
+                                                            <input type="hidden" class="form-control" id="dataIDs" name="dataIDs">
+                                                                <input type="text" class="form-control" id="dataLats" name="dataLats">
+                                                            </div>
+                                                        </div>
+                                                        <div class="form-group row">
+                                                            <label class="col-sm-2 col-form-label">Longitude</label>
+                                                            <div class="col-sm-10">
+                                                                <input type="text" class="form-control" id="dataLons"  name="dataLons">
+                                                            </div>
+                                                        </div>
+                                                        <div class="form-group row">
+                                                            <label class="col-sm-2 col-form-label">AppKey</label>
+                                                            <div class="col-sm-10">
+                                                                <textarea rows="5" cols="5" class="form-control" id="dataAppKeys"  name="dataAppKeys"></textarea>
+                                                            </div>
+                                                        </div>
+                                                     
+                                                  
+                                                   
+                                                </div>
+                                          
+   <!-- end contain -->
+                                                    
       </div>
 
       <!-- Modal footer -->
       <div class="modal-footer">
-        <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
+        <button type="submit" name="submitConfirm" value="ConfirmUpdate" class="btn btn-success" >Confirm Update</button>
       </div>
-
+      </form>
     </div>
   </div>
 </div>
@@ -284,7 +327,20 @@ $result = $dh->query($sql);
     <script src="libraries\assets\js\menu\menu-hori-fixed.js"></script>
     <script src="libraries\assets\js\jquery.mCustomScrollbar.concat.min.js"></script>
     <script type="text/javascript" src="libraries\assets\js\script.js"></script>
-    
+    <script>
+ $(".editData").on("click", function() {
+var dataID = $(this).attr('data-id');
+var dataLat = $(this).attr('data-lat');
+var dataLon = $(this).attr('data-lon');
+var dataAppKey = $(this).attr('data-appKey');
+
+$('#dataIDs').val(dataID);
+$('#dataLats').val(dataLat);
+$('#dataLons').val(dataLon);
+$('#dataAppKeys').val(dataAppKey);
+
+});
+    </script>
 </body>
 
 </html>

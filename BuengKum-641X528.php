@@ -14,6 +14,8 @@
     <link rel="stylesheet" type="text/css" href="vendors/styles/style.css">
     <link rel="stylesheet" href="style.css">
 </head>
+<script src="setTimeArray.js"></script>
+<script src="setTimeOut.js"></script>
 <script>
     function run_the_clock() {
         var date = new Date();
@@ -59,8 +61,6 @@
         $('#yearNum').html(date.getFullYear());
 
     }
-
-    var interval = setInterval(run_the_clock, 1000);
 </script>
 <script>
     function pad2(number) {
@@ -80,6 +80,7 @@
     var appKey = params.get('app-key');
 
     function FETCH_DATA() {
+
         //api line 1
         $.ajax({
             url: apiLine1 + "lat=" + lat + "&lon=" + lon + "&cnt=1&appid=" + appKey,
@@ -172,7 +173,7 @@
             }
         });
         //api line 2
-//10:00 =-1, 13:00=-2,17:00=-3,19:00=-4, 23:00=-5
+        //10:00 =-1, 13:00=-2,17:00=-3,19:00=-4, 23:00=-5
         $.ajax({
             url: apiLine2 + "lat=" + lat + "&lon=" + lon + "&appid=" + appKey,
             method: 'GET',
@@ -180,58 +181,32 @@
             success: function(data) {
                 var obj = JSON.parse(JSON.stringify(data));
                 var now = new Date();
-var strNow = now.getHours()+""+now.getMinutes();
-// alert(parseInt(strNow));
-                var countTime = "";
-                if (parseInt(strNow) < 100) {
-                    countTime = 1;
-                    countTimeSet = 0;
-                }else if (parseInt(strNow) >= 100 && parseInt(strNow) < 1000) {
-                    countTime = 1;
-                    countTimeSet = 0;
-                } else if (parseInt(strNow) >= 1000 && parseInt(strNow) < 1300) {
-                    countTime = 1;
-                    countTimeSet = 0;
-                } else if (parseInt(strNow) >= 1300 && parseInt(strNow) < 1700) {
-                    countTime = 3;
-                    countTimeSet = 0;
-                } else if (parseInt(strNow) >= 1700 && parseInt(strNow) < 2300) {
-                    countTime = 4;
-                    countTimeSet = 0;
-                } else if (parseInt(strNow) >= 2300) {
-                    alert(parseInt(strNow));
-                    countTime = 5;
-                    countTimeSet = 0;
-                } else {
-                    alert(parseInt(strNow));
-                    countTime = 0;
-                    countTimeSet = 0;
-                }
-
+                var strNow = pad2(now.getHours()) + "" + pad2(now.getMinutes());
+                countTime = setTimes(parseInt(strNow));
                 //7,15 ,23,31,39 (Time:00:00:00)
-                var codeDay1 = obj.list[8-countTime].weather[0].id;
-                var codeDay2 = obj.list[16-countTime].weather[0].id;
-                var codeDay3 = obj.list[24-countTime].weather[0].id;
-                var codeDay4 = obj.list[32-countTime].weather[0].id;
-                var codeDay5 = obj.list[40-countTime].weather[0].id;
+                var codeDay1 = obj.list[8 - countTime].weather[0].id;
+                var codeDay2 = obj.list[16 - countTime].weather[0].id;
+                var codeDay3 = obj.list[24 - countTime].weather[0].id;
+                var codeDay4 = obj.list[32 - countTime].weather[0].id;
+                var codeDay5 = obj.list[40 - countTime].weather[0].id;
 
-                var datePredict1 = obj.list[8-countTime].dt_txt;
+                var datePredict1 = obj.list[8 - countTime].dt_txt;
                 const dSplit1 = new Date(datePredict1);
                 var txtDayThais1 = convertDay(dSplit1);
 
-                var datePredict2 = obj.list[16-countTime].dt_txt;
+                var datePredict2 = obj.list[16 - countTime].dt_txt;
                 const dSplit2 = new Date(datePredict2);
                 var txtDayThais2 = convertDay(dSplit2);
 
-                var datePredict3 = obj.list[24-countTime].dt_txt;
+                var datePredict3 = obj.list[24 - countTime].dt_txt;
                 const dSplit3 = new Date(datePredict3);
                 var txtDayThais3 = convertDay(dSplit3);
 
-                var datePredict4 = obj.list[32-countTime].dt_txt;
+                var datePredict4 = obj.list[32 - countTime].dt_txt;
                 const dSplit4 = new Date(datePredict4);
                 var txtDayThais4 = convertDay(dSplit4);
 
-                var datePredict5 = obj.list[40-countTime].dt_txt;
+                var datePredict5 = obj.list[40 - countTime].dt_txt;
                 const dSplit5 = new Date(datePredict5);
                 var txtDayThais5 = convertDay(dSplit5);
                 $('#dayName-TH1').html(txtDayThais1);
@@ -275,7 +250,7 @@ var strNow = now.getHours()+""+now.getMinutes();
                     codeDay1 == 531) {
                     $('#imageDay1').html('<img src="./img/rain-cloud.svg" >');
                     document.getElementById('imageDay1').className = 'IMG-DAY-ICON4';
-                    var rainMM1 = obj.list[8-countTime].rain['3h'];
+                    var rainMM1 = obj.list[8 - countTime].rain['3h'];
                     $('#rainValue-TH1').html(getRainConvert(rainMM1));
                 } else if (
                     codeDay1 == 200 ||
@@ -290,7 +265,7 @@ var strNow = now.getHours()+""+now.getMinutes();
                     codeDay1 == 232) {
                     $('#imageDay1').html('<img src="./img/rain-cloud-light.svg" >');
                     document.getElementById('imageDay1').className = 'IMG-DAY-ICON5';
-                    var rainMM1 = obj.list[8-countTime].rain['3h'];
+                    var rainMM1 = obj.list[8 - countTime].rain['3h'];
                     $('#rainValue-TH1').htmlgetRainConvert((rainMM1));
 
                 } else {
@@ -332,7 +307,7 @@ var strNow = now.getHours()+""+now.getMinutes();
                     codeDay2 == 531) {
                     $('#imageDay2').html('<img src="./img/rain-cloud.svg" >');
                     document.getElementById('imageDay2').className = 'IMG-DAY-ICON4';
-                    var rainMM2 = obj.list[16-countTime].rain['3h'];
+                    var rainMM2 = obj.list[16 - countTime].rain['3h'];
                     $('#rainValue-TH2').html(getRainConvert(rainMM2));
                 } else if (
                     codeDay2 == 200 ||
@@ -348,7 +323,7 @@ var strNow = now.getHours()+""+now.getMinutes();
 
                     $('#imageDay2').html('<img src="./img/rain-cloud-light.svg" >');
                     document.getElementById('imageDay2').className = 'IMG-DAY-ICON5';
-                    var rainMM2 = obj.list[16-countTime].rain['3h'];
+                    var rainMM2 = obj.list[16 - countTime].rain['3h'];
                     $('#rainValue-TH2').html(getRainConvert(rainMM2));
                 } else {
                     $('#imageDay2').html('<img src="./img/rain-cloud-light.svg" >');
@@ -389,7 +364,7 @@ var strNow = now.getHours()+""+now.getMinutes();
                     codeDay3 == 531) {
                     $('#imageDay3').html('<img src="./img/rain-cloud.svg" >');
                     document.getElementById('imageDay3').className = 'IMG-DAY-ICON4';
-                    var rainMM3 = obj.list[24-countTime].rain['3h'];
+                    var rainMM3 = obj.list[24 - countTime].rain['3h'];
                     $('#rainValue-TH3').html(getRainConvert(rainMM3));
                 } else if (
                     codeDay3 == 200 ||
@@ -404,7 +379,7 @@ var strNow = now.getHours()+""+now.getMinutes();
                     codeDay3 == 232) {
                     $('#imageDay3').html('<img src="./img/rain-cloud-light.svg" >');
                     document.getElementById('imageDay3').className = 'IMG-DAY-ICON5';
-                    var rainMM3 = obj.list[24-countTime].rain['3h'];
+                    var rainMM3 = obj.list[24 - countTime].rain['3h'];
                     $('#rainValue-TH3').html(getRainConvert(rainMM3));
 
                 } else {
@@ -446,7 +421,7 @@ var strNow = now.getHours()+""+now.getMinutes();
                     codeDay4 == 531) {
                     $('#imageDay4').html('<img src="./img/rain-cloud.svg" >');
                     document.getElementById('imageDay4').className = 'IMG-DAY-ICON4';
-                    var rainMM4 = obj.list[32-countTime].rain['3h'];
+                    var rainMM4 = obj.list[32 - countTime].rain['3h'];
                     $('#rainValue-TH4').html(getRainConvert(rainMM4));
                 } else if (
                     codeDay4 == 200 ||
@@ -461,7 +436,7 @@ var strNow = now.getHours()+""+now.getMinutes();
                     codeDay4 == 232) {
                     $('#imageDay4').html('<img src="./img/rain-cloud-light.svg" >');
                     document.getElementById('imageDay4').className = 'IMG-DAY-ICON5';
-                    var rainMM4 = obj.list[32-countTime].rain['3h'];
+                    var rainMM4 = obj.list[32 - countTime].rain['3h'];
                     $('#rainValue-TH4').html(getRainConvert(rainMM4));
                 } else {
                     $('#imageDay4').html('<img src="./img/rain-cloud-light.svg" >');
@@ -502,7 +477,7 @@ var strNow = now.getHours()+""+now.getMinutes();
                     codeDay5 == 531) {
                     $('#imageDay5').html('<img src="./img/rain-cloud.svg" >');
                     document.getElementById('imageDay5').className = 'IMG-DAY-ICON4';
-                    var rainMM5 = obj.list[40-countTime].rain['3h'];
+                    var rainMM5 = obj.list[40 - countTime].rain['3h'];
                     $('#rainValue-TH5').html(getRainConvert(rainMM5));
                 } else if (
                     codeDay5 == 200 ||
@@ -517,7 +492,7 @@ var strNow = now.getHours()+""+now.getMinutes();
                     codeDay5 == 232) {
                     $('#imageDay5').html('<img src="./img/rain-cloud-light.svg" >');
                     document.getElementById('imageDay5').className = 'IMG-DAY-ICON5';
-                    var rainMM5 = obj.list[40-countTime].rain['3h'];
+                    var rainMM5 = obj.list[40 - countTime].rain['3h'];
                     $('#rainValue-TH5').html(getRainConvert(rainMM5));
 
                 } else {
@@ -528,8 +503,13 @@ var strNow = now.getHours()+""+now.getMinutes();
 
             }
         });
+
     }
-    setInterval(FETCH_DATA, 1);
+
+    setTimeout(run_the_clock, setTimeOuts1(1));
+    setTimeout(FETCH_DATA, setTimeOuts2(1));
+    setInterval(run_the_clock, setTimeOuts3(1));
+    setInterval(FETCH_DATA, setTimeOuts4(1));
 
     function convertDay(dayNames) {
         const dSplit = new Date(dayNames);
@@ -735,6 +715,7 @@ var strNow = now.getHours()+""+now.getMinutes();
     <script src="vendors/scripts/script.min.js"></script>
     <script src="vendors/scripts/process.js"></script>
     <script src="vendors/scripts/layout-settings.js"></script>
+
 </body>
 
 </html>
