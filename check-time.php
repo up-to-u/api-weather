@@ -184,7 +184,7 @@
                 var now = new Date();
     var strNow = pad2(now.getHours()) + "" + pad2(now.getMinutes());
     countTime = setTimes(parseInt(strNow));
-// alert(strNow+":"+countTime);
+// alert(parseInt(strNow)+":"+countTime);
     
                  var datePre1 = obj.list[8-countTime].dt_txt;
                  var datePre2 = obj.list[16-countTime].dt_txt;
