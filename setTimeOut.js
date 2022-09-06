@@ -12,6 +12,6 @@ function setTimeOuts3($timeOut){
     return $timeOut;
 }
 function setTimeOuts4($timeOut){
-    $timeOut = 5000;
+    $timeOut = 2000;
     return $timeOut;
 }
