@@ -22,36 +22,36 @@
 
     .ICON-IMG-MAIN1 {
         position: absolute;
-        width: 125px;
-        margin-left: -59px;
-        margin-top: -50px;
+        width: 140px;
+        margin-left: -65px;
+        margin-top: -55px;
     }
 
     .ICON-IMG-MAIN2 {
         position: absolute;
-        width: 125px;
-        margin-left: -63px;
-        margin-top: -50px;
+        width: 140px;
+        margin-left: -70px;
+        margin-top: -55px;
     }
 
     .ICON-IMG-MAIN3 {
         position: absolute;
-        width: 130px;
-        margin-left: -59px;
+        width: 155px;
+        margin-left: -75px;
         margin-top: -40px;
     }
 
     .ICON-IMG-MAIN4 {
         position: absolute;
-        width: 110px;
-        margin-left: -57px;
+        width: 125px;
+        margin-left: -60px;
         margin-top: -50px;
     }
 
     .ICON-IMG-MAIN5 {
         position: absolute;
-        width: 110px;
-        margin-left: -55px;
+        width: 125px;
+        margin-left: -60px;
         margin-top: -50px;
     }
 

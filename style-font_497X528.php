@@ -56,7 +56,7 @@
     }
 
     .TEMP-MAIN {
-        font-size: 77px;
+        font-size: 67px;
         margin-top: 38px;
         line-height: 60px;
         font-weight: 900;
@@ -70,44 +70,48 @@
 
     .TXT_F1 {
         margin-top: 20px;
-        font-size: 46px;
-    }
-
-    .TXT_F2 {
         font-size: 35px;
     }
 
+    .TXT_F2 {
+        margin-left: 8px;
+        font-size: 27px;
+    }
+
     .TXT_F3MAX {
-        font-size: 32px;
+        font-size:22px;
         font-weight: 1000;
     }
 
     .TXT_F3MIN {
-        font-size: 32px;
+        font-size: 22px;
         font-weight: 10;
 
     }
 
     .TXT_F4 {
-        font-size: 50px;
-        margin-top: -7px;
+        font-size: 35px;
+        margin-top: -4px;
     }
 
     .cycles {
-        width: 13px;
-        margin-left: 20px;
+        width: 10px;
+        margin-left: 10px;
+        margin-top: -5px;
     }
 
     /* API LINE 2 */
     .TXT_DAYS-FIRST {
-        margin-top: 5px;
-        font-size: 43px;
+        margin-top: 10px;
+        margin-bottom: 12px;
+        font-size: 38px;
         color: #FFFFFF;
     }
 
     .TXT_DAYS {
-        margin-top: 5px;
-        font-size: 43px;
+        margin-top: 10px;
+        margin-bottom: 12px;
+        font-size: 38px;
     }
 
     .IMG-DAY-ICON {
@@ -118,45 +122,45 @@
 
     .IMG-DAY-ICON1 {
         margin-top: -5px;
-        width: 60px;
+        width: 50px;
 
     }
 
     .IMG-DAY-ICON2 {
         margin-top: -5px;
-        width: 60px;
+        width: 50px;
 
     }
 
     .IMG-DAY-ICON3 {
         margin-top: -10px;
-        width: 60px;
+        width: 50px;
 
     }
 
     .IMG-DAY-ICON4 {
         margin-top: 0px;
-        width: 60px;
+        width: 50px;
 
     }
 
     .IMG-DAY-ICON5 {
         margin-top: 0px;
-        width: 60px;
+        width: 50px;
 
     }
 
     .TXT_RAIN_VALUE_FIRST {
         color: #FFFFFF;
-        margin-top: 8px;
-        font-size: 25px;
+        margin-top: 15px;
+        font-size: 22px;
         font-weight: 600;
     }
 
     .TXT_RAIN_VALUE {
         color: #5AA1D9;
-        margin-top: 8px;
-        font-size: 25px;
+        margin-top: 15px;
+        font-size: 22px;
         font-weight: 900;
     }
 

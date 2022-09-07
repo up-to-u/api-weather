@@ -97,7 +97,7 @@
                 var temKMin = obj.list[0].main.temp_min;
                 var temCMin = temKMin - 273.15;
                 // 800 , 801, 803 , 300, 200, 000
-                // codes = "200";
+               codes = "200";
                 if (codes == 800) {
                     $('#imageMain').html('<img class="ICON-IMG-MAIN1" src="./img/sun.svg" >');
                     document.getElementById('backgroundHeader').className = 'bg-1';
