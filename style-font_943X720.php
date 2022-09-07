@@ -174,9 +174,9 @@
 
     .vl {
         border-left: 1px solid white;
-        height: 208px;
+        height: 220px;
         align-items:center;
-        margin-top: -4px;
+        margin-top: 1px;
         margin-left: 7px;
         /* display:inline; */
     }

@@ -573,7 +573,7 @@
     <div class="object-wrapper">
         <div style="width:1152px;height:720px; background-color: #DDE3EF;" align="center">
             <?php include('txt-header.php'); ?>
-            <div id="backgroundHeader" style="width:890px;height:292px; margin-left: 7px; margin-right:7px;margin-top:20px;border-radius: 20px;box-shadow:1px 6px 14px #959595;">
+            <div id="backgroundHeader" style="width:1095px;height:292px; margin-left: 7px; margin-right:7px;margin-top:20px;border-radius: 20px;box-shadow:1px 6px 14px #959595;">
                 <table width="100%" border="0" style="color:#FFFFFF; height:100%;">
                     <tr height="65%">
                         <td width="33%">
@@ -650,8 +650,8 @@
                     </tr>
                 </table>
             </div>
-            <div id="backgroundFooter" style="width:890px;height:292px; margin-left: 7px; margin-right:7px;margin-top:15px;border-radius: 20px;box-shadow:1px 6px 14px #959595;" align="right">
-                <table style="position: absolute;" width="890" border="0">
+            <div id="backgroundFooter" style="width:1095px;height:292px; margin-left: 7px; margin-right:7px;margin-top:15px;border-radius: 20px;box-shadow:1px 6px 14px #959595;" align="right">
+                <table style="position: absolute;" width="1095" border="0">
                     <tr>
                         <td width="20%">
                             <div align="center" class="TXT_DAYS-FIRST" id="dayName-TH1">
@@ -710,7 +710,7 @@
                         </td>
                     </tr>
                 </table>
-                <div style="width:713px;height:292px;background-color:#FFFFFF;margin-top:15px;border-radius: 20px;">
+                <div style="width:876px;height:292px;background-color:#FFFFFF;margin-top:15px;border-radius: 20px;">
 
                 </div>
             </div>
