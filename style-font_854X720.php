@@ -70,16 +70,16 @@
 
     .TXT_F1 {
         margin-top: 15px;
-        font-size: 65px;
+        font-size: 60px;
     }
 
     .TXT_F2 {
-        font-size: 48px;
-        margin-left: 3px;
+        font-size: 45px;
+        margin-left: 6px;
     }
 
     .TXT_F3MAX {
-        font-size: 46px;
+        font-size: 40px;
         font-weight: 1000;
         margin-top: 3px;
      
@@ -87,34 +87,35 @@
 
     .TXT_F3MIN {
         margin-top: 3px;
-        font-size: 46px;
+        font-size: 40px;
         font-weight: 10;
        
 
     }
 
     .TXT_F4 {
-        font-size: 70px;
+        font-size: 60px;
         margin-top: -7px;
     }
 
     .cycles {
-        width: 16px;
-        margin-left: 23px;
+        margin-top: 2px;
+        width: 14px;
+        margin-left: 21px;
     }
 
     /* API LINE 2 */
     .TXT_DAYS-FIRST {
-        margin-bottom: 8px;
+        margin-bottom: 12px;
         margin-top: 8px;
-        font-size: 58px;
+        font-size: 56px;
         color: #FFFFFF;
     }
 
     .TXT_DAYS {
-        margin-bottom: 8px;
+        margin-bottom: 12px;
         margin-top: 8px;
-        font-size: 58px;
+        font-size: 56px;
     }
 
     .IMG-DAY-ICON {
@@ -126,57 +127,57 @@
     .IMG-DAY-ICON1 {
         margin-bottom: 10px;
         margin-top: -5px;
-        width: 100px;
+        width: 85px;
 
     }
 
     .IMG-DAY-ICON2 {
         margin-bottom: 10px;
         margin-top: -5px;
-        width: 100px;
+        width: 85px;
 
     }
 
     .IMG-DAY-ICON3 {
         margin-bottom: 10px;
         margin-top: -10px;
-        width: 100px;
+        width: 85px;
 
     }
 
     .IMG-DAY-ICON4 {
         margin-bottom: 10px;
         margin-top: 0px;
-        width: 100px;
+        width: 85px;
 
     }
 
     .IMG-DAY-ICON5 {
         margin-bottom: 10px;
         margin-top: 0px;
-        width: 100px;
+        width: 85px;
 
     }
 
     .TXT_RAIN_VALUE_FIRST {
         color: #FFFFFF;
-        margin-top: 10px;
+        margin-top: 14px;
         font-size: 30px;
         font-weight: 600;
     }
 
     .TXT_RAIN_VALUE {
         color: #5AA1D9;
-        margin-top: 10px;
+        margin-top: 14px;
         font-size: 30px;
         font-weight: 900;
     }
 
     .vl {
         border-left: 1px solid white;
-        height: 208px;
+        height: 222px;
         align-items:center;
-        margin-top: -4px;
+        margin-top: 0px;
         margin-left: 7px;
         /* display:inline; */
     }
